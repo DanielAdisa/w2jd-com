@@ -31,9 +31,9 @@ const Navbar = () => {
 
     const routes = [
         { path: '/', label: 'Home' },
-        // { path: '/about', label: 'About' },
-        // { path: '/projects', label: 'Projects' },
-        // { path: '/archviz', label: 'ArchViz' },
+        { path: '/mood', label: 'Moods' },
+        { path: '/mission', label: 'Our Mission' },
+        { path: '/contact', label: 'Contact Us' },
         // { path: '/contact', label: 'Contact' },
     ];
 

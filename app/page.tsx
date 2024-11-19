@@ -2,6 +2,7 @@
 
 import AboutUsSection from "./components/AboutUs";
 import HeroSection from "./components/HeroSection";
+import MoodsGallery from "./components/MoodsGallery";
 
 import SplashScreen from './components/SplashScreen';
 import { useState, useEffect } from 'react';
@@ -27,6 +28,7 @@ export default function Home() {
           <section className="p-">
           <HeroSection />
           <AboutUsSection/>
+          <MoodsGallery/>
           </section>
         </main>
       )}
