@@ -29,39 +29,53 @@ const generateImage = async () => {
 
   const content = contentRef.current;
 
-  // Preload images within the content
-  const images = Array.from(content.querySelectorAll("img"));
-  const preloadPromises = images.map((img) => {
-    return new Promise<void>((resolve, reject) => {
-      const testImg = new Image();
-      testImg.crossOrigin = "anonymous"; // Enable CORS for external images
-      testImg.src = img.src;
-      testImg.onload = () => resolve();
-      testImg.onerror = (err) => reject(err);
-    });
+  // Clone the content to avoid altering the original
+  const clonedContent = content.cloneNode(true) as HTMLElement;
+
+  // Apply modifications to the cloned content
+  clonedContent.style.backgroundColor = "#ffffff"; // Ensure a solid background
+  clonedContent.style.padding = "20px"; 
+  clonedContent.style.borderRadius = "10px"; 
+
+  // Add necessary inline styles to images (ensures proper rendering)
+  const images = clonedContent.querySelectorAll("img");
+  images.forEach((img) => {
+    const canvasImage = img as HTMLImageElement;
+    if (canvasImage.complete) {
+      img.setAttribute("crossOrigin", "anonymous"); // Enable CORS
+      img.style.maxWidth = "100%"; // Prevent overflow
+      img.style.height = "auto"; // Maintain aspect ratio
+    } else {
+      console.warn(`Image not loaded: ${canvasImage.src}`);
+    }
   });
 
-  try {
-    // Wait for all images to preload
-    await Promise.all(preloadPromises);
+  // Append the clone to the DOM temporarily for rendering
+  document.body.appendChild(clonedContent);
+  clonedContent.style.position = "absolute";
+  clonedContent.style.top = "-9999px";
 
-    // Use html2canvas to capture the content
-    const canvas = await html2canvas(content, {
-      useCORS: true, // Allow cross-origin resources
-      backgroundColor: "#ffffff", // Solid background color
-      scale: 2, // Increase resolution
-      logging: true,
+  try {
+    // Use html2canvas with better configuration
+    const canvas = await html2canvas(clonedContent, {
+      useCORS: true, // Allows capturing images from external sources
+      backgroundColor: null, // Supports transparency
+      logging: true, // Useful for debugging
+      windowWidth: clonedContent.scrollWidth, // Capture full width
+      windowHeight: clonedContent.scrollHeight, // Capture full height
     });
 
-    // Convert canvas to image and trigger download
+    // Generate the image URL and trigger download
     const imageUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = imageUrl;
     link.download = `${mood.title}-mood-image.png`;
     link.click();
   } catch (error) {
-    console.error("Error generating image:", error);
-    alert("Failed to generate image. Please check console for details.");
+    console.error("Image generation failed:", error);
+  } finally {
+    // Clean up the cloned element
+    document.body.removeChild(clonedContent);
   }
 };
 
@@ -88,8 +102,8 @@ const generateImage = async () => {
           alt="Hero Image"
           height={200}
           width={400}
-          layout="fit-content"
-          className="object-fill mx-auto  absolute inset-0"
+          layout="responsive"
+          className="object  mx-auto  absolute inset-0"
           />
         <div className="absolute inset-0 bg-black opacity-40"></div>
         
