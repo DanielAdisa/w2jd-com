@@ -2,10 +2,30 @@
 
 import Link from 'next/link';
 import { moods } from '@/data/moods';
+import zubi from '@/public/Assets/ruth.jpg'
+import Image from 'next/image';
 
 const MoodListPage = () => {
   return (
-    <div className="min-h-screen p-8 bg-gray-100">
+    <div className="min-h-screen p bg-gray-100">
+      <div className="relative w-full h-[597.083px]">
+        <Image
+          src={zubi}
+          alt="Hero Image"
+          layout="fill"
+          className="object-cover absolute inset-0"
+        />
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="relative flex flex-col w-full h-full items-center justify-center z-10 text-center text-white p-2 md:p-3">
+          <h1 className="text-4xl font-bold mb-4">Architectural Visualization</h1>
+          <p className="text-xl font-serif">
+            Less is only more where more is no good.
+            <br />
+            <br />– Frank Lloyd Wright
+          </p>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto">
         <h1 className="text-4xl font-bold text-center mb-8">Explore Moods</h1>
         <p className="text-center text-gray-600 mb-12">
