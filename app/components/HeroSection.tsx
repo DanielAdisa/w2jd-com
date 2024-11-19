@@ -1,6 +1,7 @@
 'use client'; // Ensures this component runs on the client-side
 
 import React from 'react';
+// import video from ""
 
 const HeroSection = () => {
   return (
@@ -8,15 +9,16 @@ const HeroSection = () => {
       {/* Background Video */}
       <video
         className="absolute md:top-0 md:left-0 w-full h-full md:object-center object-right object-cover -z-10"
-        src="/Assets/Hero.mp4" // Correct video path
+        src="/Assets/hero.mp4" // Correct video path
         autoPlay
         loop
         muted
         playsInline
+        poster="/Assets/ruth.jpg"
       ></video>
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-white/20 "></div>
+      <div className="absolute inset-0  "></div>
 
       {/* Content */}
       <div className="relative flex flex-col items-center justify-center md:w-1/2 h-full text-center px-6 text-white">
