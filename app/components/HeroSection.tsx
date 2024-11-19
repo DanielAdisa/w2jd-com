@@ -7,7 +7,7 @@ const HeroSection = () => {
     <section className="relative h-screen overflow-hidden">
       {/* Background Video */}
       <video
-        className="absolute md:top-0 md:left-0 w-full h-full object-right object-cover -z-10"
+        className="absolute md:top-0 md:left-0 w-full h-full md:object-center object-right object-cover -z-10"
         src="/Assets/Hero.mp4" // Correct video path
         autoPlay
         loop
