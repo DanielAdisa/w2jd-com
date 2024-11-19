@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation'; // Use `usePathname` for active states in Next.js 13
 
-import { FaArrowPointer, FaBars, FaMaximize, } from 'react-icons/fa6';
+import { FaArrowPointer, FaBars, FaDoorClosed, FaDoorOpen, FaLine, FaMaximize, } from 'react-icons/fa6';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const Navbar = () => {
@@ -42,16 +42,16 @@ const Navbar = () => {
     return (
         <header
             className={`${
-                header ? 'bg-white shadow-xl text-black' : 'backdrop-blur-xl text-white'
+                header ? 'bg-white shadow-xl text-black' : 'backdrop-blur-2xl text-white'
             } fixed top-0 w-full z-50 transition-all duration-300`}
         >
-            <nav className="max-w-[95%] mx-auto flex items-center justify-between h-16 px-4 lg:px-0">
+            <nav className="md:max-w-[95%]  mx-auto flex items-center justify-between h-16 px-2 lg:px-0">
                 {/* Logo */}
                 <Link href="/" className="flex items-center">
                     <Avatar className=' text-base'>
                         <AvatarFallback
                             className={`${
-                                header ? 'text-black bg-gray-200' : 'text-white bg-black'
+                                header ? 'text-black text-[10px] bg-gray-200' : 'text-white text-[10px] bg-black'
                             } transition duration-300`}
                         >
                            WWJD
@@ -62,10 +62,10 @@ const Navbar = () => {
                 {/* Mobile Menu Toggle */}
                 <button
                     onClick={toggleMobileMenu}
-                    className="lg:hidden p-2 text-2xl text-inherit transition-all ease-in-out"
+                    className="lg:hidden p-1 text-2xl text-inherit transition-all ease-in-out"
                     aria-label="Toggle menu"
                 >
-                    {isMobileMenuOpen ? <FaMaximize /> : <FaBars />}
+                    {isMobileMenuOpen ? <FaDoorOpen /> : <FaDoorClosed />}
                 </button>
 
                 {/* Desktop Menu */}
@@ -93,10 +93,10 @@ const Navbar = () => {
                 <div className="fixed inset-0 h-screen bg-black bg-opacity-75 flex flex-col items-center justify-center space-y-8 text-white text-2xl font-semibold z-50">
                     <button
                         onClick={toggleMobileMenu}
-                        className="absolute top-6 right-6 text-3xl"
+                        className="absolute top-6 right-4 text-2xl"
                         aria-label="Close menu"
                     >
-                        <FaMaximize  />
+                        <FaDoorOpen  />
                     </button>
                     {routes.map(({ path, label }) => (
                         <Link
