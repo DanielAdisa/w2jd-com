@@ -4,8 +4,8 @@ export const moods = [
       title: 'Joyful',
       description: 'Rejoice in the Lord always; let His joy fill your heart and overflow into your life.',
       images: [
-        '/Assets/ruth2.png',
-        '/Assets/ruth2.png',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'During one of my darkest times, I found a spark of joy by trusting God wholeheartedly. I realized joy isn’t tied to circumstances but rooted in His eternal promises. Let us all learn to choose joy daily by meditating on His word and leaning into His love.',
@@ -19,8 +19,8 @@ export const moods = [
       title: 'Peaceful',
       description: 'Rest in the peace that surpasses all understanding and let God’s presence calm your storms.',
       images: [
-        '/Assets/ruth2.png',
-        '/Assets/ruth2.png',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'I was overwhelmed with anxiety until I started casting my worries onto Him in prayer. It wasn’t instant, but the peace that followed was undeniable. You can also find this peace by trusting Him with your burdens.',
@@ -34,8 +34,8 @@ export const moods = [
       title: 'Hopeful',
       description: 'Let hope arise, knowing that God is faithful to His promises and His plans for you are good.',
       images: [
-        '/Assets/hopeful1.jpg',
-        '/Assets/hopeful2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'When life seemed hopeless, I clung to His promises and found renewed strength. His word reminded me that He works all things for good. Stay hopeful, for He has a future planned for you.',
@@ -49,8 +49,8 @@ export const moods = [
       title: 'Thankful',
       description: 'In every situation, give thanks to the Lord, for gratitude shifts our focus from problems to His blessings.',
       images: [
-        '/Assets/thankful1.jpg',
-        '/Assets/thankful2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'Gratitude transformed my perspective. Instead of dwelling on what I lacked, I praised God for His endless provisions. Cultivating thankfulness can change your life too!',
@@ -64,8 +64,8 @@ export const moods = [
       title: 'Broken',
       description: 'When your heart feels shattered, trust that God is near the brokenhearted and saves those crushed in spirit.',
       images: [
-        '/Assets/broken1.jpg',
-        '/Assets/broken2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'In my brokenness, I felt unworthy and lost. But God reminded me that He uses broken vessels to shine His light. Surrender your pain to Him, and let Him heal you.',
@@ -79,8 +79,8 @@ export const moods = [
       title: 'Lonely',
       description: 'Even when you feel alone, God is always with you. He will never leave nor forsake you.',
       images: [
-        '/Assets/lonely1.jpg',
-        '/Assets/lonely2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'Loneliness consumed me until I realized I was never truly alone. God’s presence brought comfort and purpose. Remember, He is always with you.',
@@ -94,8 +94,8 @@ export const moods = [
       title: 'Forgiven',
       description: 'Rejoice in the freedom of forgiveness through Christ. His mercy is new every morning.',
       images: [
-        '/Assets/forgiven1.jpg',
-        '/Assets/forgiven2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'I struggled to forgive myself for past mistakes until I grasped the depth of His forgiveness. Let His grace wash over you, and forgive yourself too.',
@@ -109,8 +109,8 @@ export const moods = [
       title: 'Victorious',
       description: 'Through Christ, you are more than a conqueror. Walk in His victory every day.',
       images: [
-        '/Assets/victorious1.jpg',
-        '/Assets/victorious2.jpg',
+        '/Assets/ruth.jpg',
+        '/Assets/ruth.jpg',
       ],
       personalStory: 
         'Challenges made me doubt myself, but through Christ, I learned that victory is already mine. Lean on His strength, and you will overcome.',
