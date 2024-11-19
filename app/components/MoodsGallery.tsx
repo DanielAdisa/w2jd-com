@@ -1,83 +1,61 @@
 'use client';
-import Image from 'next/image';
+
 import Link from 'next/link';
-import React from 'react';
+import { moods } from '@/data/moods';
+import zubi from '@/public/Assets/ruth.jpg'
+import Image from 'next/image';
 
-// Dummy Data for Moods
-const moods = [
-  {
-    id: '1',
-    title: 'Joyful',
-    images: ['/joy1.jpg', '/joy2.jpg'], // Add your actual image paths here
-    description: 'Experience the fullness of joy through God’s presence and blessings.',
-    hash: 'joyful-mood',
-  },
-  {
-    id: '2',
-    title: 'Peaceful',
-    images: ['/peace1.jpg', '/peace2.jpg'],
-    description: 'Discover the peace that surpasses all understanding in His Word.',
-    hash: 'peaceful-mood',
-  },
-  {
-    id: '3',
-    title: 'Grateful',
-    images: ['/grateful1.jpg', '/grateful2.jpg'],
-    description: 'Count your blessings and embrace a spirit of thanksgiving.',
-    hash: 'grateful-mood',
-  },
-  // Add more moods here
-];
-
-const MoodsGallery = () => {
+const MoodListPage = () => {
   return (
-    <section className="py-20 bg-gray-50 text-gray-900">
-      <div className="max-w-7xl mx-auto px-6 sm:px-12">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-4xl font-extrabold text-gray-900">
-            Explore Moods
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-            Find inspiration, strength, and comfort in God’s Word for every mood you experience.
+    <div className="min-h-screen p bg-gray-100">
+      {/* <div className="relative w-full h-[597.083px]">
+        <Image
+          src={zubi}
+          alt="Hero Image"
+          layout="fill"
+          className="object-cover absolute inset-0"
+        />
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="relative flex flex-col w-full h-full items-center justify-center z-10 text-center text-white p-2 md:p-3">
+          <h1 className="text-4xl font-bold mb-4">Architectural Visualization</h1>
+          <p className="text-xl font-serif">
+            Less is only more where more is no good.
+            <br />
+            <br />– Frank Lloyd Wright
           </p>
-        </div>
+        </div> 
+      </div> */}
 
-        {/* Moods Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8">Explore Moods</h1>
+        <p className="text-center text-gray-600 mb-12">
+          Discover different moods, explore their stories, and find helpful resources.
+        </p>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
           {moods.map((mood) => (
-            <div
-              key={mood.id}
-              className="relative bg-white rounded-lg shadow-md overflow-hidden transition-transform transform hover:scale-105"
+            <Link 
+              key={mood.id} 
+              href={`/mood/${mood.id}`}
+              className="block bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition"
             >
-              {/* Mood Image */}
-              <div className="h-48 w-full relative">
-                <Image
-                  src={mood.images[0]} // Display the first image for preview
+              <div className="relative">
+                <img
+                  src={mood.images[0]} // Display the first image as a preview
                   alt={mood.title}
-                  layout="fill"
-                  objectFit="cover"
-                  className="rounded-t-lg"
+                  className="w-full h-48 object-cover"
                 />
               </div>
-
-              {/* Mood Content */}
-              <div className="p-6 space-y-4">
-                <h3 className="text-2xl font-semibold">{mood.title}</h3>
-                <p className="text-gray-700">{mood.description}</p>
-                <Link
-                  href={`/mood/${mood.hash}`}
-                  className="inline-block px-6 py-2 bg-blue-600 text-white font-medium rounded-lg shadow-md hover:bg-blue-700 transition"
-                >
-                  Learn More
-                </Link>
+              <div className="p-6">
+                <h2 className="text-xl font-semibold mb-2">{mood.title}</h2>
+                <p className="text-sm text-gray-600">{mood.description}</p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default MoodsGallery;
+export default MoodListPage;

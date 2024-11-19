@@ -16,14 +16,14 @@ const MoodListPage = () => {
           className="object-cover absolute inset-0"
         />
         <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative flex flex-col w-full h-full items-center justify-center z-10 text-center text-white p-2 md:p-3">
+        {/* <div className="relative flex flex-col w-full h-full items-center justify-center z-10 text-center text-white p-2 md:p-3">
           <h1 className="text-4xl font-bold mb-4">Architectural Visualization</h1>
           <p className="text-xl font-serif">
             Less is only more where more is no good.
             <br />
             <br />– Frank Lloyd Wright
           </p>
-        </div>
+        </div> */}
       </div>
 
       <div className="max-w-7xl mx-auto">
@@ -32,7 +32,7 @@ const MoodListPage = () => {
           Discover different moods, explore their stories, and find helpful resources.
         </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-5">
           {moods.map((mood) => (
             <Link 
               key={mood.id} 
