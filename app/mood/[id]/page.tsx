@@ -6,6 +6,7 @@ import { use, useRef } from "react";
 import { toPng } from "html-to-image";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
@@ -91,16 +92,28 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
           <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
             {mood.title}
           </h1>
-          <p className="text-lg text-gray-700 dark:text-gray-300 mt-4 text-center">
+          <p className="text-lg text-gray-700 dark:text-gray-300 mt-2 text-center">
             {mood.description}
           </p>
-          <div className="mt-6">
+          <div className="mt-4">
             <h2 className="text-xl font-semibold text-gray-800 dark:text-white">
               Personal Story
             </h2>
             <p className="text-md text-gray-700 dark:text-gray-300 mt-2">
               {mood.personalStory}
             </p>
+            <h2 className="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
+              Resources
+            </h2>
+            {mood.resources.map((resource, index) => (
+              <Link
+                key={index} // Ensure unique keys
+                href={resource}
+                className="text-md text-blue-600  dark:text-gray-300 "
+              >
+                <div className=" text-center md:text-start p-0.5">{resource}</div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>
