@@ -37,7 +37,7 @@ const MoodListPage = () => {
             <Link 
               key={mood.id} 
               href={`/mood/${mood.id}`}
-              className="block bg-stone-50 shadow-md rounded-[10px] md:h-auto h-[420px] p overflow-hidden hover:shadow-lg transition-all ease-in-out"
+              className="block bg-stone-50 shadow-md rounded-[10px] md:h-auto h-fit p overflow-hidden hover:shadow-lg transition-all ease-in-out"
             >
               <div className="relative">
                 <img
