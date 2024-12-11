@@ -30,12 +30,13 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
       content.style.position = "relative";
       content.style.zIndex = "9999";
       content.style.overflow = "visible";
+      content.style.borderRadius = "20";
 
       // Generate the image using `toPng`
       const dataUrl = await toPng(content, {
         backgroundColor: "#ffffff", // Non-transparent background
         cacheBust: true, // Prevents caching issues
-        pixelRatio: 2, // High-quality resolution
+        pixelRatio: 5, // High-quality resolution
         width: rect.width, // Capture only the width of the section
         height: rect.height, // Capture only the height of the section
       });
@@ -66,20 +67,20 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
       </div>
 
       {/* Mood Content Section */}
-      <div className="max-w-3xl mx-auto bg-white dark:bg-slate-800 mt-5">
+      <div className="max-w-3xl mx-auto bg-stone-50 dark:bg-slate-800 mt-5">
       <div
         ref={contentRef}
-        className="p-3 rounded-xl shadow-xl"
+        className="p rounded-xl shadow-md"
       >
         {/* Image Inside Card */}
-        <div className="relative overflow-hidden rounded-md">
+        <div className="relative overflow-hidden rounded-m">
           <Image
             src={mood.images[0]}
             alt="Mood Image"
             layout="responsive"
             width={100}
             height={50}
-            className="rounded-md"
+            className="rounde"
             style={{
               objectFit: "cover",
               aspectRatio: "4 / 3", // Maintain 4:3 aspect ratio
@@ -88,7 +89,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
 
         {/* Text Content */}
-        <div className="mt-6">
+        <div className="mt-2 p-2">
           <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
             {mood.title}
           </h1>

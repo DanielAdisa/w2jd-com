@@ -7,4 +7,3 @@ export interface Mood {
     personalStory: string;
     images: string[];  // Array of image URLs
   }
-  
