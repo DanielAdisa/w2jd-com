@@ -18,18 +18,18 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
   const contentRef = useRef<HTMLDivElement>(null);
   const generateImage = async () => {
     if (!contentRef.current) return;
-  
+
     try {
       const content = contentRef.current;
-  
+
       // Calculate the position and dimensions of the section to capture
       const rect = content.getBoundingClientRect();
-  
+
       // Apply specific styles to ensure accurate rendering
       content.style.position = "relative";
       content.style.zIndex = "9999";
       content.style.overflow = "visible";
-  
+
       // Generate the image using `toPng`
       const dataUrl = await toPng(content, {
         backgroundColor: "#ffffff", // Non-transparent background
@@ -38,7 +38,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
         width: rect.width, // Capture only the width of the section
         height: rect.height, // Capture only the height of the section
       });
-  
+
       // Trigger download
       const link = document.createElement("a");
       link.href = dataUrl;
@@ -48,7 +48,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
       console.error("Image generation failed:", error);
     }
   };
-  
+
 
   return (
     <div className="min-h-screen bg-gray-100 pb-5 dark:bg-slate-900">

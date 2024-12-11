@@ -28,7 +28,7 @@ export default function Home() {
           <section className="p-">
           <HeroSection />
           <AboutUsSection/>
-          <MoodsGallery/>
+          {/* <MoodsGallery/> */}
           </section>
         </main>
       )}
