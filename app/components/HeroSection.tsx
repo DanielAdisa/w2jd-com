@@ -36,7 +36,7 @@ const HeroSection = () => {
             Explore More
           </Button>
           <Button
-           
+
             className="px-6 py-3 border border-white text-white rounded-lg font-medium hover:bg-white hover:text-blue-500 transition"
           >
             Learn More
@@ -48,3 +48,9 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
+
+// Software engineer with over 6 years of diverse industry experience including recent experience in core fintech and (startup)
+// supply chain SaaS. Passionate about crafting intuitive experiences, architecting scalable systems, and delivering robust
+// applications. Proven track record of driving innovation, working with distributed teams, and enhancing reliability across
+// various IT sectors.
