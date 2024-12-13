@@ -1,15 +1,6 @@
 import { useState, useEffect } from 'react';
+import Link from 'next/link'; // Import Link from Next.js
 import { useRouter } from 'next/navigation'; // Adjust based on router type
-// interface Mood {
-//     id: string;
-//     title: string;
-//     description: string;
-//     images: string[];
-//     personalStory: string;
-//     verses: string[];
-//     resources: string[];
-//   }
-  
 
 const SearchBar = ({ moods = [] }) => {
   const [searchQuery, setSearchQuery] = useState('');
@@ -17,6 +8,7 @@ const SearchBar = ({ moods = [] }) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = typeof window !== 'undefined' ? useRouter() : null;
 
+  // Search functionality with debouncing
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setFilteredMoods(moods);
@@ -34,14 +26,6 @@ const SearchBar = ({ moods = [] }) => {
 
     return () => clearTimeout(timeout);
   }, [searchQuery, moods]);
-
-  const handleMoodClick = (id) => {
-    if (router) {
-      router.push(`/mood/${id}`);
-    } else {
-      console.error('Router not available.');
-    }
-  };
 
   return (
     <div className="w-full p-4">
@@ -85,22 +69,23 @@ const SearchBar = ({ moods = [] }) => {
               <li
                 key={mood.id}
                 className="flex items-center p-2 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition duration-150 ease-in-out"
-                onClick={() => handleMoodClick(mood.id)}
               >
-                <span>
-                  {mood.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, i) => (
-                    <span
-                      key={i}
-                      className={
-                        part.toLowerCase() === searchQuery.toLowerCase()
-                          ? 'text-teal-500 font-semibold'
-                          : ''
-                      }
-                    >
-                      {part}
+                <Link href={`/mood/${mood.id}`} passHref  className="w-full">
+                    <span>
+                      {mood.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, i) => (
+                        <span
+                          key={i}
+                          className={
+                            part.toLowerCase() === searchQuery.toLowerCase()
+                              ? 'text-teal-500 font-semibold'
+                              : ''
+                          }
+                        >
+                          {part}
+                        </span>
+                      ))}
                     </span>
-                  ))}
-                </span>
+                </Link>
               </li>
             ))
           ) : (
