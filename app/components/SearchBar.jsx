@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation'; // Adjust based on router type
-interface Mood {
-    id: string;
-    title: string;
-    description: string;
-    images: string[];
-    personalStory: string;
-    verses: string[];
-    resources: string[];
-  }
+// interface Mood {
+//     id: string;
+//     title: string;
+//     description: string;
+//     images: string[];
+//     personalStory: string;
+//     verses: string[];
+//     resources: string[];
+//   }
   
 
 const SearchBar = ({ moods = [] }) => {
