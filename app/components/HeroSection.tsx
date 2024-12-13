@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import SearchBar from './SearchBar';
+import SearchBar from '../components/SearchBar';
 import { moods } from '@/data/moods';
 // import video from ""
 
