@@ -6,6 +6,21 @@ import SearchBar from '../components/SearchBar';
 import { moods } from '@/data/moods';
 // import video from ""
 
+interface Mood {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  personalStory: string;
+  verses: string[];
+  resources: string[];
+}
+
+interface SearchBarProps {
+  moods: Mood[];
+}
+
+
 const HeroSection = () => {
   return (
     <section className="relative h-screen overflow-hidden">
