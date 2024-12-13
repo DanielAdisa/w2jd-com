@@ -2,6 +2,8 @@
 
 import { Button } from '@/components/ui/button';
 import React from 'react';
+import SearchBar from './SearchBar';
+import { moods } from '@/data/moods';
 // import video from ""
 
 const HeroSection = () => {
@@ -41,6 +43,7 @@ const HeroSection = () => {
           >
             Learn More
           </Button>
+          <SearchBar moods={moods} />
         </div>
       </div>
     </section>

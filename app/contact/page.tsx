@@ -1,151 +1,168 @@
-'use client';
+"use client";
 
-import { FC, useState } from 'react';
+import heroImage from '@/public/Assets/ruth.jpg';
 import Image from 'next/image';
-import heroImage from '@/public/Assets/ruth.jpg'; // Replace with your desired hero image
-import Link from 'next/link';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { useState } from 'react';
+import { FaFacebook, FaFacebookMessenger, FaInstagram, FaLinkedinIn, FaMailchimp, FaTwitter } from 'react-icons/fa6';
 
-const ContactUs: FC = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+type Inputs = {
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
+};
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+const ContactPage = () => {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<Inputs>();
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here (e.g., send to an API or email service)
-    console.log(formData);
+  const onSubmit: SubmitHandler<Inputs> = async (formData) => {
+    setLoading(true);
+    try {
+      await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      alert('Message sent successfully!');
+    } catch (error) {
+      console.error('Error sending message:', error);
+      alert('Failed to send message. Please try again.');
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-
+    <div>
       {/* Hero Section */}
       <div className="relative w-full h-[600px]">
         <Image
           src={heroImage}
-          alt="Contact Hero Image"
+          alt="Hero Image"
           layout="fill"
-          className="object-cover absolute inset-0 opacity-80"
+          className="object-cover absolute inset-0"
         />
-        <div className="absolute inset-0 bg-black opacity-40"></div>
-        <div className="relative flex flex-col w-full h-full items-center justify-center z-10 text-center text-white p-8 md:p-16">
-          <h1 className="text-5xl font-extrabold leading-tight mb-4 text-shadow-lg">
-            Contact Us
-          </h1>
-          <p className="text-xl font-serif max-w-3xl mx-auto">
-            We're here to help you. Reach out with any questions, thoughts, or feedback. We'd love to hear from you!
-          </p>
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-70"></div>
+        <div className="relative flex flex-col items-center justify-center w-full h-full text-center text-white p-4">
+          <h1 className="text-5xl font-extrabold mb-4">Contact Us</h1>
+          <p className="text-xl italic">We'd love to hear from you. Reach out to us below.</p>
         </div>
       </div>
 
-      {/* Contact Form Section */}
-      <div className="max-w-7xl mx-auto px-4 py-16">
-        <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white mb-8">
-          Get in Touch
-        </h2>
-        <p className="text-center text-lg text-gray-600 dark:text-gray-300 mb-12">
-          Whether you have a question, suggestion, or just want to say hello, we're here to listen and support you.
-        </p>
-
+      {/* Content Section */}
+      <div className="h-fit md:w-5/6 w-full mx-auto flex flex-col md:flex-row md:space-x-10 p-6 md:py-12">
         {/* Contact Form */}
-        <form onSubmit={handleSubmit} className="space-y-6 max-w-3xl mx-auto bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg">
-          {/* Name Field */}
-          <div className="flex flex-col">
-            <label htmlFor="name" className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-2">
-              Your Name
-            </label>
+        <div className="flex-1">
+          <form
+            className="flex flex-col space-y-6 md:w-11/12 max-w-lg mx-auto"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <div className="flex flex-col md:flex-row md:space-x-4 space-y-4 md:space-y-0">
+              <div className="flex-1">
+                <input
+                  {...register('name', { required: "Name is required" })}
+                  className="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-teal-500 focus:outline-none"
+                  type="text"
+                  placeholder="Name"
+                  aria-label="Name"
+                />
+                {errors.name && (
+                  <p className="text-red-500 text-sm mt-1" aria-live="assertive">{errors.name.message}</p>
+                )}
+              </div>
+              <div className="flex-1">
+                <input
+                  {...register('email', { required: "Email is required", pattern: { value: /^[^@\s]+@[^@\s]+\.[^@\s]+$/, message: "Invalid email address" } })}
+                  className="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-teal-500 focus:outline-none"
+                  type="email"
+                  placeholder="Email"
+                  aria-label="Email"
+                />
+                {errors.email && (
+                  <p className="text-red-500 text-sm mt-1" aria-live="assertive">{errors.email.message}</p>
+                )}
+              </div>
+            </div>
             <input
+              {...register('subject', { required: "Subject is required" })}
+              className="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-teal-500 focus:outline-none"
               type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              className="p-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
-              placeholder="Enter your name"
-              required
+              placeholder="Subject"
+              aria-label="Subject"
             />
-          </div>
-
-          {/* Email Field */}
-          <div className="flex flex-col">
-            <label htmlFor="email" className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-2">
-              Your Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              className="p-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
-              placeholder="Enter your email"
-              required
-            />
-          </div>
-
-          {/* Message Field */}
-          <div className="flex flex-col">
-            <label htmlFor="message" className="text-xl font-medium text-gray-700 dark:text-gray-200 mb-2">
-              Your Message
-            </label>
+            {errors.subject && (
+              <p className="text-red-500 text-sm mt-1" aria-live="assertive">{errors.subject.message}</p>
+            )}
             <textarea
-              id="message"
-              name="message"
-              value={formData.message}
-              onChange={handleChange}
-              className="p-4 border border-gray-300 rounded-lg text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:text-gray-200 dark:border-gray-600"
-              placeholder="Enter your message"
-              rows={5}
-              required
-            />
-          </div>
-
-          {/* Submit Button */}
-          <div className="flex justify-center">
+              {...register('message', { required: "Message is required" })}
+              className="w-full border rounded-lg px-4 py-2 focus:ring focus:ring-teal-500 focus:outline-none"
+              placeholder="Message"
+              rows={10}
+              aria-label="Message"
+            ></textarea>
+            {errors.message && (
+              <p className="text-red-500 text-sm mt-1" aria-live="assertive">{errors.message.message}</p>
+            )}
             <button
+              className="bg-teal-500 py-3 px-6 rounded-md text-white font-bold text-lg hover:bg-teal-600 focus:ring focus:ring-teal-400 focus:outline-none flex items-center justify-center"
               type="submit"
-              className="bg-blue-600 text-white px-10 py-4 rounded-lg text-xl hover:bg-blue-700 transition-all ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500"
+              disabled={isSubmitting || loading}
             >
-              Send Message
+              {loading ? (
+                <svg className="animate-spin h-5 w-5 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.963 7.963 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+              ) : 'Submit'}
             </button>
-          </div>
-        </form>
-      </div>
+          </form>
+        </div>
 
-      {/* Why Contact Us Section */}
-      <div className="bg-gray-800 dark:bg-gray-900 py-16 px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold text-gray-100 mb-8">Why We’re Here</h2>
-          <p className="text-lg text-gray-400 max-w-3xl mx-auto">
-            At Misfits for Christ, we believe in the power of community and connection. We're here to support you on your journey and answer any questions you may have.
-          </p>
+        {/* Map Section */}
+        <div className="flex-1 mt-10 md:mt-0">
+          <div className="md:w-full mx-auto h-[450px] border rounded-lg overflow-hidden shadow-lg">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2382.0449990498078!2d-6.420074422925379!3d53.3424506722882!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4867731b8a426801%3A0xc876761f4c896bec!2s1%20Rosse%20Court%20Ave%2C%20Balgaddy%2C%20Lucan%2C%20Co.%20Dublin%2C%20K78%20C638%2C%20Ireland!5e0!3m2!1sen!2sng!4v1731765100055!5m2!1sen!2sng"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Our Location"
+            ></iframe>
+          </div>
         </div>
       </div>
 
-      {/* Join Us Section */}
-      <div className="max-w-7xl mx-auto p-4 text-center py-16">
-        <h2 className="text-3xl font-semibold text-gray-800 dark:text-white mb-6">
-          Join Our Community
-        </h2>
-        <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-          Whether you are new to our community or have been with us for years, we invite you to continue walking this journey together. Join us in spreading love and hope to all.
-        </p>
-        <Link href="/contact" className="bg-blue-600 text-white px-10 py-4 rounded-xl text-lg hover:bg-blue-700 transition-all ease-in-out">
-          Get Involved
-        </Link>
+      {/* Social Media & Other Contact Options */}
+      <div className="bg-gray-100 py-10">
+        <div className="max-w-5xl mx-auto text-center space-y-6">
+          <h2 className="text-3xl font-bold">Connect with Us</h2>
+          <p className="text-gray-700">Follow us on social media or reach us through other platforms.</p>
+          <div className="flex justify-center space-x-6">
+            <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:text-blue-800">
+              <FaFacebook/>
+            </a>
+            <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-600">
+              <FaTwitter/>
+            </a>
+            <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-700">
+              <FaInstagram/>
+            </a>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" className="text-blue-700 hover:text-blue-900">
+              <FaLinkedinIn/>
+            </a>
+            <a href="mailto:info@example.com" className="text-gray-700 hover:text-gray-900">
+              <FaMailchimp/>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   );
 };
 
-export default ContactUs;
+export default ContactPage;

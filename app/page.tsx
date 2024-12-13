@@ -3,6 +3,8 @@
 import AboutUsSection from "./components/AboutUs";
 import HeroSection from "./components/HeroSection";
 import MoodsGallery from "./components/MoodsGallery";
+import SearchBar from "./components/SearchBar";
+import { moods } from '@/data/moods';
 
 import SplashScreen from './components/SplashScreen';
 import { useState, useEffect } from 'react';
@@ -27,6 +29,7 @@ export default function Home() {
           {/* Your main content */}
           <section className="p-">
           <HeroSection />
+          {/* <SearchBar moods={moods} /> */}
           <AboutUsSection/>
           {/* <MoodsGallery/> */}
           </section>
