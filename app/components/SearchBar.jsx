@@ -50,7 +50,7 @@ const SearchBar = ({ moods = [] }) => {
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Search moods..."
+          placeholder="How do you feel today?..."
           className="w-full border rounded-lg px-4 py-2 pl-10 focus:ring focus:ring-teal-500 focus:outline-none shadow-sm"
         />
         {searchQuery && (
