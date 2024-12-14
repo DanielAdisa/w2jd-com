@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const SearchBar = ({ moods = [] }) => {
+const SearchBar = ({ moods = [any] }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMoods, setFilteredMoods] = useState(moods);
   const [isLoading, setIsLoading] = useState(false);
@@ -63,7 +63,7 @@ const SearchBar = ({ moods = [] }) => {
       </div>
 
       {/* Search results */}
-      <div className="mt-6 grid grid-cols-2 gap-4">
+      <div className="mt-6 grid grid-cols-2 gap-2">
         {isLoading ? (
           <div className="col-span-2 text-center text-gray-500">Loading...</div>
         ) : searchQuery && filteredMoods.length === 0 ? (
@@ -78,7 +78,7 @@ const SearchBar = ({ moods = [] }) => {
               passHref
               className="block p-4 bg-teal-100 border border-teal-300 rounded-lg shadow-md hover:bg-teal-200 transition duration-200"
             >
-              <div className="flex items-center justify-center h-24">
+              <div className="flex items-center justify-center h-10">
                 <span className="text-teal-800 text-lg font-semibold text-center">
                   {mood.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, i) => (
                     <span
