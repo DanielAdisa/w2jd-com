@@ -1,14 +1,14 @@
+'use client';
+
 import { useState, useEffect } from 'react';
-import Link from 'next/link'; // Import Link from Next.js
-import { useRouter } from 'next/navigation'; // Adjust based on router type
+import Link from 'next/link';
 
 const SearchBar = ({ moods = [] }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMoods, setFilteredMoods] = useState(moods);
   const [isLoading, setIsLoading] = useState(false);
-  const router = typeof window !== 'undefined' ? useRouter() : null;
 
-  // Search functionality with debouncing
+  // Debounced filtering logic
   useEffect(() => {
     if (searchQuery.trim() === '') {
       setFilteredMoods(moods);
@@ -22,32 +22,33 @@ const SearchBar = ({ moods = [] }) => {
       );
       setFilteredMoods(filtered);
       setIsLoading(false);
-    }, 300); // Debounce delay
+    }, 300);
 
     return () => clearTimeout(timeout);
   }, [searchQuery, moods]);
 
   return (
-    <div className="w-full p-4">
+    <div className="w-full max-w-lg mx-auto p-4">
+      {/* Search input */}
       <div className="relative">
         <input
           type="text"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="How do you feel today?..."
-          className="w-full border rounded-lg px-4 py-2 pl-10 focus:ring focus:ring-teal-500 focus:outline-none shadow-sm"
+          className="w-full border rounded-lg px-4 py-2 pl-12 focus:ring focus:ring-teal-500 focus:outline-none shadow-md"
         />
         {searchQuery && (
           <button
             onClick={() => setSearchQuery('')}
-            className="absolute right-2 top-2 text-gray-500 hover:text-gray-700"
+            className="absolute right-3 top-3 text-gray-500 hover:text-gray-700"
           >
             ✖
           </button>
         )}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5 absolute left-3 top-3 text-gray-400"
+          className="h-6 w-6 absolute left-3 top-2.5 text-gray-400"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -60,39 +61,43 @@ const SearchBar = ({ moods = [] }) => {
           />
         </svg>
       </div>
-      {isLoading ? (
-        <div className="mt-4 text-center text-gray-500">Loading...</div>
-      ) : (
-        <ul className="mt-4 space-y-2">
-          {filteredMoods.length > 0 ? (
-            filteredMoods.map((mood) => (
-              <li
-                key={mood.id}
-                className="flex items-center p-2 border-b border-gray-200 hover:bg-gray-50 cursor-pointer transition duration-150 ease-in-out"
-              >
-                <Link href={`/mood/${mood.id}`} passHref  className="w-full">
-                    <span>
-                      {mood.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, i) => (
-                        <span
-                          key={i}
-                          className={
-                            part.toLowerCase() === searchQuery.toLowerCase()
-                              ? 'text-teal-500 font-semibold'
-                              : ''
-                          }
-                        >
-                          {part}
-                        </span>
-                      ))}
+
+      {/* Search results */}
+      <div className="mt-6 grid grid-cols-2 gap-4">
+        {isLoading ? (
+          <div className="col-span-2 text-center text-gray-500">Loading...</div>
+        ) : searchQuery && filteredMoods.length === 0 ? (
+          <div className="col-span-2 text-center text-gray-500 italic">
+            No moods match your search.
+          </div>
+        ) : (
+          filteredMoods.map((mood) => (
+            <Link
+              key={mood.id}
+              href={`/mood/${mood.id}`}
+              passHref
+              className="block p-4 bg-teal-100 border border-teal-300 rounded-lg shadow-md hover:bg-teal-200 transition duration-200"
+            >
+              <div className="flex items-center justify-center h-24">
+                <span className="text-teal-800 text-lg font-semibold text-center">
+                  {mood.title.split(new RegExp(`(${searchQuery})`, 'gi')).map((part, i) => (
+                    <span
+                      key={i}
+                      className={
+                        part.toLowerCase() === searchQuery.toLowerCase()
+                          ? 'text-teal-600 underline font-bold'
+                          : ''
+                      }
+                    >
+                      {part}
                     </span>
-                </Link>
-              </li>
-            ))
-          ) : (
-            <li className="text-gray-500 italic">No results found.</li>
-          )}
-        </ul>
-      )}
+                  ))}
+                </span>
+              </div>
+            </Link>
+          ))
+        )}
+      </div>
     </div>
   );
 };

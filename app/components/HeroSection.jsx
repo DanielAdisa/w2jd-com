@@ -23,7 +23,7 @@ import { moods } from '@/data/moods';
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="relative h-screen overflow-hidden ">
       {/* Background Video */}
       <video
         className="absolute md:top-0 md:left-0 w-full h-full md:object-center object-right object-cover -z-10"
@@ -39,7 +39,7 @@ const HeroSection = () => {
       <div className="absolute inset-0  "></div>
 
       {/* Content */}
-      <div className="relative flex flex-col items-center justify-center md:w-1/2 h-full text-center px-6 text-white">
+      <div className="relative mt-6 flex flex-col items-center justify-center md:w-1/2 h-full text-center px-6 text-white">
         <h1 className="text-3xl md:text-6xl font-bold leading-tight">
           Experience the Divine
         </h1>
