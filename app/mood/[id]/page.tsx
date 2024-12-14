@@ -89,7 +89,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
         </div>
 
         {/* Text Content */}
-        <div className="mt-2 p-2">
+        <div className="mt-2 p-2 j">
           <h1 className="text-3xl font-bold text-center text-gray-800 dark:text-white">
             {mood.title}
           </h1>
@@ -103,6 +103,12 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
             <p className="text-md text-gray-700 dark:text-gray-300 mt-2">
               {mood.personalStory}
             </p>
+            <h2 className="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
+              Verses
+            </h2>
+            {mood.verses.map((verses, index) => (
+                <div key={index} className=" mb-2 text-stone-50 text-center text-xl backdrop-blur-xl bg-black/70 rounded-md  md:text-start p-3">{verses}</div>
+            ))}
             <h2 className="text-xl font-semibold mt-4 text-gray-800 dark:text-white">
               Resources
             </h2>
