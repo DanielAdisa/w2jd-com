@@ -109,7 +109,10 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
             {mood.verses.map((verses, index) => (
                 <div key={index} className="m-2 mt-0 ml-0 mr-0 text-stone-50 text-start text-base backdrop-blur-xl bg-stone-600 font-serif font-semibold rounded-md  md:text-start p-2">{verses}</div>
             ))}
-            <h2 className="text-xl font-semibold mt-2 text-gray-800 dark:text-white">
+          </div>
+        </div>
+      </div>
+            <h2 className="text-xl font-semibold mt-2 text-center text-gray-800 dark:text-white">
               Resources
             </h2>
             {mood.resources.map((resource, index) => (
@@ -121,9 +124,6 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
                 <div className=" text-center md:text-start p-0.5">{resource}</div>
               </Link>
             ))}
-          </div>
-        </div>
-      </div>
       </div>
 
       {/* Button to Download Image */}
