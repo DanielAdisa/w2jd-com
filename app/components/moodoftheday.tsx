@@ -18,7 +18,7 @@ const DailyMood = () => {
   }, []); // Runs only once when the component mounts
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-teal-300 via-blue-500 to-indigo-600 text-white">
+    <div className="h-screen flex items-center justify-center bg-gradient-to-r p-3 from-teal-300 via-blue-500 to-indigo-600 text-white">
       <div className="max-w-3xl w-full bg-white text-gray-800 rounded-3xl shadow-lg overflow-hidden">
         {/* Hero Image */}
         <div className="relative w-full h-[300px]">
