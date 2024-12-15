@@ -34,6 +34,7 @@ const Navbar = () => {
     { path: '/mood', label: 'Moods' },
     { path: '/mission', label: 'Our Mission' },
     { path: '/contact', label: 'Contact Us' },
+    { path: '/mood-of-the-day', label: 'Mood Of The Day' },
   ];
 
   // Updated isActive function for parent route highlighting
