@@ -6,19 +6,19 @@ import SearchBar from './SearchBar';
 import { moods } from '@/data/moods';
 // import video from ""
 
-// interface Mood {df
-//   id: string;
-//   title: string;
-//   description: string;
-//   images: string[];
-//   personalStory: string;
-//   verses: string[];
-//   resources: string[];
-// }
+interface Mood {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  personalStory: string;
+  verses: string[];
+  resources: string[];
+}
 
-// interface SearchBarProps {
-//   moods: Mood[];
-// }
+interface SearchBarProps {
+  moods: Mood[];
+}
 
 
 const HeroSection = () => {
@@ -32,7 +32,7 @@ const HeroSection = () => {
   loop
   muted
   playsInline
-  poster="/Assets/ruth.jpg"
+  poster="/Assets/hope.jpg"
   aria-label="Background video of a divine journey"
 ></video>
 

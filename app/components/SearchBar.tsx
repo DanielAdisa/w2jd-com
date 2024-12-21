@@ -3,15 +3,59 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-const SearchBar = ({ moods = [any] }) => {
+interface Mood {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  personalStory: string;
+  verses: string[];
+  resources: string[];
+}
+
+interface SearchBarProps {
+
+  moods: {
+
+    id: string;
+
+    title: string;
+
+    description: string;
+
+    images: string[];
+
+    personalStory: string;
+
+    verses: string[];
+
+    resources: string[];
+
+  }[];
+
+}
+
+
+const SearchBar: React.FC<SearchBarProps> = ({ moods = [] }) => {
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredMoods, setFilteredMoods] = useState(moods);
+  const [filteredMoods, setFilteredMoods] = useState<Mood[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  // Function to get 4 random moods
+  const getRandomMoods = (moodsList: Mood[]): Mood[] => {
+    const shuffled = [...moodsList].sort(() => Math.random() - 0.5);
+    return shuffled.slice(0, 4);
+  };
+
+  // Initialize with 4 random moods
+  useEffect(() => {
+    setFilteredMoods(getRandomMoods(moods));
+  }, [moods]);
 
   // Debounced filtering logic
   useEffect(() => {
     if (searchQuery.trim() === '') {
-      setFilteredMoods(moods);
+      setFilteredMoods(getRandomMoods(moods)); // Reset to random moods when search is cleared
       return;
     }
 
