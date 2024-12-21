@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '@/public/Assets/ruth2.png'; // Replace with your logo path
+import logo from '@/public/Assets/ruth.jpg'; // Replace with your logo path
 
 const SplashScreen = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -27,7 +27,7 @@ const SplashScreen = () => {
             alt="Moods Logo"
             width={150}
             height={150}
-            className="animate-bounce mx-auto"
+            className="animate-bounce rounded-full mx-auto"
           />
         </div>
 
