@@ -34,8 +34,8 @@ const HeroSection = () => {
   playsInline
   poster="/Assets/ruth.jpg"
   aria-label="Background video of a divine journey"
-  loading="lazy"
 ></video>
+
 
 {/* Overlay */}
 <div className="absolute inset-0 bg-black opacity-50"></div>
