@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa6'
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white mt-12">
+    <footer className="bg-black text-white">
       <div className="max-w-7xl mx-auto px-6 sm:px-8 py-10 md:py-14">
         {/* Top Section */}
         <div className="flex flex-col lg:flex-row justify-between items-center gap-8">

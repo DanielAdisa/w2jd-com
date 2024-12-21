@@ -43,7 +43,7 @@ const HeroSection = () => {
 {/* Content */}
 <section className="relative mt-6 flex flex-col items-center justify-center md:w-1/2 h-full text-center px-6 text-white">
   <h1 className="text-3xl md:text-6xl font-bold leading-tight">
-    Experience the Divined
+    Experience the Divine
   </h1>
   <p className="mt-4 text-base md:text-xl">
     A journey through faith, guided by His light and glory.

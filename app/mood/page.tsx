@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 const MoodListPage = () => {
   return (
-    <div className="min-h-screen p bg-gray-100">
+    <div className="min-h-screen pb-10 bg-gray-100">
       <div className="relative w-full h-[597.083px]">
         <Image
           src={zubi}

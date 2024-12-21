@@ -199,4 +199,130 @@ export const moods = [
       'https://www.crosswalk.com/faith/spiritual-life/empowered-by-the-holy-spirit.html',
     ],
   },
+  {
+    id: '11',
+    title: 'Anxious',
+    category: 'challenging',
+    description: 'When anxiety overwhelms, cast your cares upon Him for He cares for you.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'In moments of intense anxiety, I found peace through prayer and meditation on His word.',
+    verses: [
+      'Philippians 4:6-7 - Do not be anxious about anything, but in every situation, by prayer and petition, present your requests to God.',
+      '1 Peter 5:7 - Cast all your anxiety on him because he cares for you.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/worry-and-anxiety-bible-verses/']
+  },
+  {
+    id: '12',
+    title: 'Courageous',
+    category: 'positive',
+    description: 'Stand firm in faith, knowing God has equipped you with strength and courage.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Faith gave me courage to face seemingly impossible situations.',
+    verses: [
+      'Joshua 1:9 - Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.'
+    ],
+    resources: ['https://www.gotquestions.org/Bible-courage.html']
+  },
+  {
+    id: '13',
+    title: 'Doubtful',
+    category: 'challenging',
+    description: 'When doubt creeps in, remember His faithfulness and promises.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Through seasons of doubt, His truth remained my anchor.',
+    verses: [
+      'Mark 9:24 - Lord, I believe; help my unbelief!',
+      'James 1:6 - But let him ask in faith, with no doubting'
+    ],
+    resources: ['https://www.desiringgod.org/articles/faith-and-doubt']
+  },
+  {
+    id: '14',
+    title: 'Renewed',
+    category: 'positive',
+    description: 'Experience the refreshing power of His Spirit making all things new.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'His grace brings daily renewal and fresh perspective.',
+    verses: [
+      '2 Corinthians 5:17 - Therefore, if anyone is in Christ, he is a new creation.'
+    ],
+    resources: ['https://www.biblestudytools.com/bible-study/topical-studies/what-does-it-mean-to-be-a-new-creation.html']
+  },
+  {
+    id: '15',
+    title: 'Weary',
+    category: 'challenging',
+    description: 'Find rest in His presence when life leaves you exhausted.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'In my weariness, I discovered His strength and perfect rest.',
+    verses: [
+      'Matthew 11:28-30 - Come to me, all who labor and are heavy laden, and I will give you rest.'
+    ],
+    resources: ['https://www.christianity.com/wiki/christian-life/what-does-the-bible-say-about-rest.html']
+  },{
+    id: '16',
+    title: 'Grateful',
+    category: 'positive',
+    description: 'Cultivate a heart of thanksgiving, recognizing God’s blessings in every season.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Through practicing gratitude daily, I discovered countless blessings I had overlooked. Even in difficult times, there was always something to thank God for - from the air in my lungs to His faithful promises.',
+    verses: [
+      'Colossians 3:17 - And whatever you do, in word or deed, do everything in the name of the Lord Jesus, giving thanks to God the Father through him.',
+      'Psalm 100:4 - Enter his gates with thanksgiving, and his courts with praise! Give thanks to him; bless his name!'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/thanksgiving-bible-verses/']
+  },
+  {
+    id: '17',
+    title: 'Discouraged',
+    category: 'challenging',
+    description: 'When disappointments come, remember God’s faithfulness and His power to restore.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'After repeated setbacks, discouragement felt overwhelming. But God’s word reminded me that He works all things for good, and His timing is perfect.',
+    verses: [
+      'Isaiah 41:10 - Fear not, for I am with you; be not dismayed, for I am your God.',
+      'Psalm 34:18 - The LORD is near to the brokenhearted and saves the crushed in spirit.'
+    ],
+    resources: ['https://www.desiringgod.org/articles/what-to-do-when-discouraged']
+  },
+  {
+    id: '18',
+    title: 'Confident',
+    category: 'positive',
+    description: 'Stand firm in who God says you are, confident in His promises and purpose.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Learning to root my confidence in God’s unchanging character rather than changing circumstances transformed my perspective on challenges.',
+    verses: [
+      'Philippians 1:6 - Being confident of this very thing, that He who has begun a good work in you will complete it.',
+      'Hebrews 10:35-36 - Therefore do not cast away your confidence, which has great reward.'
+    ],
+    resources: ['https://www.gotquestions.org/Bible-confidence.html']
+  },
+  {
+    id: '19',
+    title: 'Guilty',
+    category: 'challenging',
+    description: 'Exchange guilt for grace, accepting God’s complete forgiveness and mercy.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Guilt kept me in chains until I truly understood the depth of God’s forgiveness. His grace is greater than all our sin.',
+    verses: [
+      'Romans 8:1 - There is therefore now no condemnation for those who are in Christ Jesus.',
+      '1 John 1:9 - If we confess our sins, he is faithful and just to forgive us.'
+    ],
+    resources: ['https://www.christianity.com/wiki/sin/what-does-the-bible-say-about-guilt.html']
+  },
+  {
+    id: '20',
+    title: 'Faithful',
+    category: 'positive',
+    description: 'Walk in faithfulness, trusting God’s promises even when the path seems unclear.',
+    images: ['/Assets/victor.jpg'],
+    personalStory: 'Through seasons of uncertainty, choosing faith over fear led to experiencing God’  s faithfulness in remarkable ways.',
+    verses: [
+      'Hebrews 11:1 - Now faith is the substance of things hoped for, the evidence of things not seen.',
+      'Lamentations 3:23 - Great is your faithfulness.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/faith-bible-verses/']
+  }
 ];
