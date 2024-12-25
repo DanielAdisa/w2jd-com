@@ -7,19 +7,27 @@ import Image from 'next/image';
 const DailyMood = () => {
   const [currentMood, setCurrentMood] = useState(moods[0]);
 
-  // Function to get a random mood for the day
+  // Filter cheerful moods for Christmas
+  const cheerfulMoods = moods.filter(mood => 
+    mood.category === 'positive' ||
+    ['Joyful', 'Hopeful', 'Peaceful', 'Victorious','Loved'].includes(mood.title)
+  );
+
   useEffect(() => {
-    const getRandomMood = () => {
-      const randomIndex = Math.floor(Math.random() * moods.length);
-      setCurrentMood(moods[randomIndex]);
+    const getChristmasMood = () => {
+      const randomIndex = Math.floor(Math.random() * cheerfulMoods.length);
+      setCurrentMood(cheerfulMoods[randomIndex]);
     };
 
-    getRandomMood();
-  }, []); // Runs only once when the component mounts
+    getChristmasMood();
+  }, []);
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r p-3 from-teal-300 via-blue-500 to-indigo-600 text-white">
-      <div className="max-w-3xl w-full bg-white text-gray-800 rounded-3xl shadow-lg overflow-hidden">
+    <div className="h-fit flex items-center pt-20 justify-center bg-gradient-to-r p-3 from-red-500 via-green-500 to-red-500 text-white">
+      <div className="max-w-3xl w-full bg-white text-gray-800 rounded-3xl shadow-lg overflow-hidden relative">
+        {/* Christmas Decoration */}
+        <div className="absolute top-0 left-0 w-full h-4 bg-gradient-to-r from-red-600 via-green-600 to-red-600"></div>
+        
         {/* Hero Image */}
         <div className="relative w-full h-[300px]">
           <Image
@@ -28,24 +36,28 @@ const DailyMood = () => {
             fill
             className="object-cover"
           />
-          <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center">
-            <h1 className="text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-              Mood of the Day
-            </h1>
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          {/* Christmas Message */}
+          <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full">
+            Merry Christmas! 🎄
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-6 space-y-4">
-          <h2 className="text-3xl font-bold text-center">{currentMood.title}</h2>
-          <p className="text-center text-gray-600">{currentMood.description}</p>
-          <div className="flex justify-center mt-4">
-            <a
-              href={`/mood/${currentMood.id}`}
-              className="px-6 py-3 text-lg font-semibold rounded-lg bg-teal-500 text-white hover:bg-teal-600 transition duration-300"
-            >
-              Explore Mood
-            </a>
+        <div className="p-8">
+          <h2 className="text-3xl font-bold mb-4 text-red-600">{currentMood.title}</h2>
+          <p className="text-lg mb-6">{currentMood.description}</p>
+          <div className="space-y-4">
+            <div className="bg-green-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-green-700 mb-2">Christmas Reflection</h3>
+              <p>{currentMood.personalStory}</p>
+            </div>
+            <div className="bg-red-50 p-4 rounded-lg">
+              <h3 className="font-semibold text-red-700 mb-2">Scripture for Today</h3>
+              {currentMood.verses.map((verse, index) => (
+                <p key={index} className="mb-2">{verse}</p>
+              ))}
+            </div>
           </div>
         </div>
       </div>
