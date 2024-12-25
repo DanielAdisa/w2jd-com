@@ -90,6 +90,7 @@ const MoodOfTheDay = () => {
       </div>
     </div>
   </div>
+  </div>
   <div className="flex justify-center mt-6">
   <Button
     onClick={generateImage}
@@ -98,7 +99,6 @@ const MoodOfTheDay = () => {
     Generate & Download Image
   </Button>
 </div>
-  </div>
   </div>
   );
 };
