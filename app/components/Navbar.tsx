@@ -45,7 +45,7 @@ const Navbar = () => {
   return (
     <header
       className={`${
-        header ? 'bg-white shadow-xl text-black' : 'backdrop-blur-2xl text-white'
+        header ? 'bg-white z-50 shadow-xl text-black' : 'backdrop-blur-2xl z-50 text-white'
       } fixed top-0 w-full z-50 transition-all duration-300`}
     >
       <nav className="md:max-w-[95%] mx-auto flex items-center justify-between h-16 px-2 lg:px-0">

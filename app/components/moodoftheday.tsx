@@ -65,7 +65,7 @@ const MoodOfTheDay = () => {
         fill
         className="object-cover"
       />
-      <div className="absolute inset-0 bg-black opacity-30"></div>
+      <div className="absolute   inset-0 bg-black opacity-30"></div>
       {/* Christmas Message */}
       <div className="absolute top-4 left-4 bg-red-600 text-white px-4 py-2 rounded-full">
         Merry Christmas! 🎄
