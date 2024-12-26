@@ -22,7 +22,7 @@ interface SearchBarProps {
 
 const HeroSection = () => {
   return (
-    <section className="relative h-screen bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400">
+    <section className="relative pt-20 h-screen bg-gradient-to-br from-purple-600 via-blue-500 to-teal-400">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -40,7 +40,7 @@ const HeroSection = () => {
 
       {/* Text Content over Hero Image */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white p-6">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">Welcome to Our Community</h1>
+        <h1 className="text-2xl md:text-6xl font-bold mb-4">Welcome to Our Community</h1>
         <p className="text-lg md:text-xl max-w-3xl mb-8">
           Discover the power of faith, hope, and love through our community and outreach programs.
         </p>
