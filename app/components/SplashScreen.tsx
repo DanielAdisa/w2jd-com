@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Image from 'next/image';
-import logo from '@/public/Assets/ruth.jpg'; // Replace with your logo path
+import logo from '@/public/wwjd.svg'; // Replace with your logo path
 import { motion } from 'framer-motion';
 
 const SplashScreen = () => {
