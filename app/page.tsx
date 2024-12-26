@@ -8,6 +8,7 @@ import { moods } from '@/data/moods';
 
 import SplashScreen from './components/SplashScreen';
 import { useState, useEffect } from 'react';
+import TestimoniesPage from "./components/testimony";
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -31,6 +32,7 @@ export default function Home() {
           <HeroSection />
           {/* <SearchBar moods={moods} /> */}
           <AboutUsSection/>
+          <TestimoniesPage/>
           {/* <MoodsGallery/> */}
           </section>
         </main>

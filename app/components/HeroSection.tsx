@@ -35,8 +35,8 @@ const HeroSection = () => {
       </div>
 
       {/* Overlay for text contrast */}
-      {/* <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-10"></div> */}
-      {/* <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-500/30 to-teal-400/30 z-10"></div> */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-blue-500/30 to-teal-400/30 z-10"></div>
 
       {/* Text Content over Hero Image */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white p-6">

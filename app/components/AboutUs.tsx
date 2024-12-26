@@ -29,8 +29,8 @@ const AboutUsSection = () => {
           <p className="text-lg md:text-xl max-w-3xl">
             Welcome to Misfits For Christ. We are dedicated to spreading love, hope, and faith through our community and outreach programs.
           </p>
-          <Link href="/contact">
-            <span className="  bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+          <Link href="/contact" className=" flex items-center justify-center">
+            <span className=" absolute bg-gradient-to-r from-purple-600 to-blue-600 text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
               Contact Us
             </span>
           </Link>
