@@ -23,7 +23,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
     try {
       const content = contentRef.current;
       const dataUrl = await toPng(content, {
-        quality: 1,
+        quality: 2,
         pixelRatio: 3
       });
       const link = document.createElement("a");
@@ -67,13 +67,13 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
             <div className="absolute top-6 right-6 flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-md opacity-75"></div>
-                <div className="relative bg-gradient-to-r from-purple-500 to-blue-500 px-4 py-1.5 rounded-full text-white/90 font-medium shadow-xl backdrop-blur-sm border border-white/10">
+                {/* <div className="relative bg-gradient-to-r from-purple-500 to-blue-500 px-4 py-1.5 rounded-full text-white/90 font-medium shadow-xl backdrop-blur-sm border border-white/10">
                   ✨ Featured Reflection
-                </div>
+                </div> */}
               </div>
               <div className="relative">
                 <div className="absolute inset-0 bg-gradient-to-r from-teal-600 to-blue-600 rounded-full blur-md opacity-75"></div>
-                <div className="relative bg-gradient-to-r from-teal-500 to-blue-500 px-4 py-1.5 rounded-full text-white/90 font-medium shadow-xl backdrop-blur-sm border border-white/10">
+                <div className="relative bg-gradient-to-r from-teal-500 to-blue-500 px-4 py-1 md:px-4 md:py-1.5 rounded-full text-white/90 font-sans text-sm md:text-base shadow-xl backdrop-blur-sm border border-white/10">
                   {today}
                 </div>
               </div>
@@ -83,9 +83,9 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="absolute bottom-0 p-8 w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent"
+              className="absolute bottom-0 p-4 w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent"
             >
-              <h1 className="text-4xl md:text-6xl font-serif text-white mb-4 tracking-tight">
+              <h1 className="text-4xl md:text-6xl font-mono text-white mb-2 tracking-tight">
                 {mood.title}
               </h1>
               <p className="text-xl md:text-2xl text-white/80 max-w-3xl font-light">
@@ -95,35 +95,35 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
 
           {/* Content Section */}
-          <div className="p-8 space-y-8">
+          <div className="p-4 space-y-4">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.3 }}
               className="prose dark:prose-invert max-w-none"
             >
-              <h2 className="text-2xl md:text-3xl font-serif mb-4">Reflection</h2>
-              <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
+              <h2 className="text-2xl md:text-3xl mb-2">Reflection</h2>
+              <blockquote className="text-slate-600 border-l-4 border-slate-200 p-2 bg-stone-300/15  dark:text-slate-300">
                 {mood.personalStory}
-              </p>
+              </blockquote>
             </motion.div>
 
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="space-y-4"
+              className="space-y-2"
             >
-              <h2 className="text-2xl md:text-3xl font-serif mb-6">Scripture</h2>
+              <h2 className="text-2xl md:text-3xl mb-3">Scripture</h2>
               {mood.verses.map((verse, index) => (
                 <motion.blockquote
                   key={index}
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
-                  className="p-4 border-l-4 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 rounded-r-lg"
+                  className="p-2 border-l-4 border-slate-200 dark:border-slate-600 bg-slate-50 dark:bg-slate-700/50 rounded-r-lg"
                 >
-                  <p className="text-slate-600 dark:text-slate-300 italic">
+                  <p className="text-slate-600 dark:text-slate-300 ">
                     {verse}
                   </p>
                 </motion.blockquote>
