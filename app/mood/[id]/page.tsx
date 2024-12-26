@@ -159,7 +159,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
                     damping: 12,
                     delay: 0.7 + (index * 0.1)
                   }}
-                  className="bg-gradient-to-br from-green-50 to-green-50/50 dark:from-slate-700/50 dark:to-slate-800/50 p-6 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-500"
+                  className="bg-gradient-to-br from-green-50 to-green-50/50 dark:from-slate-700/50 dark:to-slate-800/50 p-3 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-500"
                 >
                   <p className="text-lg text-slate-700 dark:text-slate-300 italic">
                     {verse}
