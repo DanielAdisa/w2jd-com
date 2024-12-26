@@ -1,99 +1,88 @@
 'use client';
 
 import Link from 'next/link';
-import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope } from 'react-icons/fa6';
+import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope, FaHeart } from 'react-icons/fa6';
 
 const Footer = () => {
   return (
-    <footer className="bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 sm:px-8 py-10 md:py-14">
-        {/* Top Section */}
-        <div className="flex flex-col lg:flex-row justify-between items-center gap-8">
-          {/* Logo & Mission */}
-          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-            <h2 className="text-2xl font-bold">Misfits for Christ</h2>
-            <p className="mt-2 text-gray-400 max-w-md">
-              A movement dedicated to spreading the love of Christ, inspiring hope, and bringing faith to life through daily challenges and heartfelt messages.
+    <footer className="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900">
+      <div className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+          {/* Brand Section */}
+          <div className="space-y-4">
+            <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent">
+              Misfits for Christ
+            </h2>
+            <p className="text-gray-300 leading-relaxed">
+              A movement dedicated to spreading the love of Christ, inspiring hope, and bringing faith to life.
             </p>
           </div>
 
-          {/* Navigation Links */}
-          <div className="flex space-x-6 text-center lg:text-left">
-            <Link
-              href="/"
-              className="hover:text-gray-400 transition duration-300"
-            >
-              Home
-            </Link>
-            <Link
-              href="/mood"
-              className="hover:text-gray-400 transition duration-300"
-            >
-              Moods
-            </Link>
-            <Link
-              href="/mission"
-              className="hover:text-gray-400 transition duration-300"
-            >
-              Our Mission
-            </Link>
-            <Link
-              href="/contact"
-              className="hover:text-gray-400 transition duration-300"
-            >
-              Contact Us
-            </Link>
+          {/* Quick Links */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white">Quick Links</h3>
+            <ul className="space-y-2">
+              {['Home', 'About', 'Contact', 'Blog'].map((link) => (
+                <li key={link}>
+                  <Link
+                    href={`/${link.toLowerCase()}`}
+                    className="text-gray-300 hover:text-white transition-colors duration-300"
+                  >
+                    {link}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Social Media Links */}
-          <div className="flex space-x-4 text-2xl">
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition duration-300"
-              aria-label="Facebook"
-            >
-              <FaFacebook />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition duration-300"
-              aria-label="Twitter"
-            >
-              <FaTwitter />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-400 hover:text-white transition duration-300"
-              aria-label="Instagram"
-            >
-              <FaInstagram />
-            </a>
-            <a
-              href="mailto:contact@misfitsforchrist.com"
-              className="text-gray-400 hover:text-white transition duration-300"
-              aria-label="Email"
-            >
-              <FaEnvelope />
-            </a>
+          {/* Contact Info */}
+          <div className="space-y-4">
+            <h3 className="text-lg font-semibold text-white">Contact Us</h3>
+            <ul className="space-y-2 text-gray-300">
+              <li>info@misfitsforchrist.com</li>
+              {/* <li>+1 (555) 123-4567</li>
+              <li>123 Faith Street</li>
+              <li>New York, NY 10001</li> */}
+            </ul>
+          </div>
+
+          {/* Social & Newsletter */}
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Follow Us</h3>
+              <div className="flex space-x-4">
+                {[FaFacebook, FaTwitter, FaInstagram, FaEnvelope].map((Icon, i) => (
+                  <Link
+                    key={i}
+                    href="#"
+                    className="bg-white/10 p-3 rounded-full hover:bg-white/20 transition-colors duration-300"
+                  >
+                    <Icon className="w-5 h-5 text-white" />
+                  </Link>
+                ))}
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-lg font-semibold text-white mb-4">Newsletter</h3>
+              <div className="flex">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="bg-white/10 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-purple-500"
+                />
+                <button className="bg-purple-600 px-4 py-2 rounded-r-lg hover:bg-purple-700 transition-colors duration-300">
+                  Subscribe
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-gray-700 my-8"></div>
-
-        {/* Bottom Section */}
-        <div className="flex flex-col md:flex-row justify-between items-center text-gray-500 text-sm">
-          <p className="mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Misfits for Christ. All rights reserved.
-          </p>
-          <p>
-            Built with love and faith by <span className="text-blue-500">Misfits for Christ Team</span>.
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-white/10 text-center text-gray-400">
+          <p className="flex items-center justify-center gap-2">
+            Made with <FaHeart className="text-red-500" /> by <Link href={"https://daniel-port-sept.vercel.app/"}> Adisa Made It </Link> © {new Date().getFullYear()}
           </p>
         </div>
       </div>
