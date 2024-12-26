@@ -98,35 +98,68 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
           </div>
 
           {/* Content Section */}
-          <div className="p-4 space-y-3">
+          <div className="p-4 space-y-6">
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="bg-red-50 dark:bg-slate-700/50 p-3 rounded-2xl"
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+                delay: 0.2
+              }}
+              className="bg-gradient-to-br from-red-50 to-red-50/50 dark:from-slate-700/50 dark:to-slate-800/50 p-6 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-500"
             >
-              <h2 className="text-2xl font-serif text-red-700 dark:text-red-400 mb-4">
+              <motion.h2 
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.3, type: "spring" }}
+                className="text-2xl font-serif text-red-700 dark:text-red-400 mb-4"
+              >
                 Christmas Reflection
-              </h2>
-              <p className="text-lg text-slate-700 dark:text-slate-300">
+              </motion.h2>
+              <motion.p 
+                initial={{ y: 20, opacity: 0 }}
+                animate={{ y: 0, opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="text-lg text-slate-700 dark:text-slate-300"
+              >
                 {mood.personalStory}
-              </p>
+              </motion.p>
             </motion.div>
 
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: 40, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
+              transition={{
+                type: "spring",
+                stiffness: 100,
+                damping: 12,
+                delay: 0.5
+              }}
               className="space-y-4"
             >
-              <h2 className="text-2xl font-serif text-green-700 dark:text-green-400 mb-6">
+              <motion.h2
+                initial={{ x: -20, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ delay: 0.6, type: "spring" }}
+                className="text-2xl font-serif text-green-700 dark:text-green-400 mb-6"
+              >
                 Scripture Gifts
-              </h2>
+              </motion.h2>
               {mood.verses.map((verse, index) => (
                 <motion.div
                   key={index}
-                  initial={{ x: -20, opacity: 0 }}
-                  animate={{ x: 0, opacity: 1 }}
-                  transition={{ delay: 0.1 * index }}
-                  className="bg-green-50 dark:bg-slate-700/50 p-3 rounded-2xl"
+                  initial={{ x: -40, opacity: 0, scale: 0.9 }}
+                  animate={{ x: 0, opacity: 1, scale: 1 }}
+                  whileHover={{ scale: 1.02, x: 10 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 100,
+                    damping: 12,
+                    delay: 0.7 + (index * 0.1)
+                  }}
+                  className="bg-gradient-to-br from-green-50 to-green-50/50 dark:from-slate-700/50 dark:to-slate-800/50 p-6 rounded-2xl backdrop-blur-sm hover:shadow-xl transition-all duration-500"
                 >
                   <p className="text-lg text-slate-700 dark:text-slate-300 italic">
                     {verse}
