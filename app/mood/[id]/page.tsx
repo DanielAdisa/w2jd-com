@@ -40,7 +40,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="min-h-screen p-4 pt-20 pb-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-slate-900 via-purple-900 to-slate-900 dark:from-slate-950 dark:via-purple-950 dark:to-slate-950 "
+      className="min-h-screen p-4 pt-20 pb-10 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-stone-900 via-purple-900 to-stone-900 dark:from-slate-950 dark:via-purple-950 dark:to-slate-950 "
     >
       {/* <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-teal-500/10 via-purple-500/10 to-slate-500/10 pointer-events-none"></div> */}
       <motion.div
@@ -48,43 +48,61 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
         animate={{ y: 0 }}
         className="max-w-4xl mx-auto"
       >
-        <div ref={contentRef} className="bg-white dark:bg-slate-800 rounded-3xl shadow-2xl overflow-hidden">
-          {/* Christmas Banner */}
-          <div className="h-2 bg-gradient-to-r from-red-500 via-green-500 to-red-500"></div>
+        <div 
+          ref={contentRef} 
+          className="relative bg-white/80 dark:bg-slate-800/80 rounded-3xl shadow-2xl overflow-hidden backdrop-blur-sm"
+        >
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 via-transparent to-blue-500/5"></div>
+
+          {/* Top Banner */}
+          <div className="relative h-1.5 bg-gradient-to-r from-purple-500 via-blue-500 to-purple-500"></div>
 
           {/* Hero Section */}
-          <div className="relative h-[400px]">
+          <div className="relative h-[450px] group">
             <Image
               src={mood.images[0]}
               alt={mood.title}
               fill
-              className="object-cover"
+              className="object-cover transition-transform duration-700 "
               priority
             />
+            
+            {/* Multiple Gradient Overlays */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-            <div className="absolute top-4 right-4 bg-red-600 text-white px-4 py-2 rounded-full">
-              🎄 Merry Christmas
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-transparent to-blue-900/30" />
+            
+            {/* Floating Badge */}
+            <div className="absolute top-6 right-6">
+              <div className="relative">
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full blur-md opacity-75"></div>
+                <div className="relative bg-gradient-to-r from-purple-500 to-blue-500 px-6 py-2.5 rounded-full text-white/90 font-medium shadow-xl backdrop-blur-sm border border-white/10">
+                  ✨ Featured Reflection
+                </div>
+              </div>
             </div>
+
+            {/* Title Section */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="absolute bottom-0 p-8"
+              className="absolute bottom-0 p-4 w-full bg-gradient-to-t from-black/80 via-black/50 to-transparent"
             >
-              <h1 className="text-4xl md:text-5xl font-serif text-white mb-4">
+              <h1 className="text-4xl md:text-6xl font-serif text-white mb-4 tracking-tight">
                 {mood.title}
               </h1>
-              <p className="text-lg md:text-xl text-white/90">
+              <p className="text-xl md:text-2xl text-white/80 max-w-3xl font-light">
                 {mood.description}
               </p>
             </motion.div>
           </div>
 
           {/* Content Section */}
-          <div className="p-8 space-y-8">
+          <div className="p-4 space-y-3">
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              className="bg-red-50 dark:bg-slate-700/50 p-8 rounded-2xl"
+              className="bg-red-50 dark:bg-slate-700/50 p-3 rounded-2xl"
             >
               <h2 className="text-2xl font-serif text-red-700 dark:text-red-400 mb-4">
                 Christmas Reflection
@@ -108,7 +126,7 @@ const MoodPage = ({ params }: { params: Promise<{ id: string }> }) => {
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1 * index }}
-                  className="bg-green-50 dark:bg-slate-700/50 p-6 rounded-2xl"
+                  className="bg-green-50 dark:bg-slate-700/50 p-3 rounded-2xl"
                 >
                   <p className="text-lg text-slate-700 dark:text-slate-300 italic">
                     {verse}
