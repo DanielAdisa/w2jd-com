@@ -3,6 +3,21 @@
 import Link from 'next/link';
 import { FaFacebook, FaTwitter, FaInstagram, FaEnvelope, FaHeart } from 'react-icons/fa6';
 
+export const mainRoutes = [
+  { path: '/', label: 'Home' },
+  { path: '/mood', label: 'Moods' },
+  { path: '/testimonies', label: 'Testimonies' },
+  // { path: '/mission', label: 'Our Mission' },
+  // { path: '/contact', label: 'Contact' },
+  { path: '/mood-of-the-day', label: 'Mood Of The Day' }
+];
+
+export const socialLinks = [
+  { href: 'https://twitter.com/misfitsforchrist', label: 'Twitter' },
+  { href: 'https://facebook.com/misfitsforchrist', label: 'Facebook' },
+  { href: 'https://instagram.com/misfitsforchrist', label: 'Instagram' }
+];
+
 const Footer = () => {
   return (
     <footer className="bg-gradient-to-br z-50 from-slate-900 via-purple-900 to-slate-900">
@@ -22,16 +37,16 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-semibold text-white">Quick Links</h3>
             <ul className="space-y-2">
-              {['/', 'Mood', 'Contact', 'Mission'].map((link) => (
-                <li key={link}>
-                  <Link
-                    href={`/${link.toLowerCase()}`}
-                    className="text-gray-300 hover:text-white transition-colors duration-300"
-                  >
-                    {link}
-                  </Link>
-                </li>
-              ))}
+            {mainRoutes.map(({ path, label }) => (
+              <li key={path}>
+                <Link
+                  href={path}
+                  className="text-gray-300 hover:text-white transition-colors duration-300"
+                >
+                  {label}
+                </Link>
+              </li>
+            ))}
             </ul>
           </div>
 

@@ -6,6 +6,13 @@ import TestimonyCard from '../components/TestimonyCard';
 import TestimonyForm from '../components/TestimonyForm';
 import { Testimony } from '../types/testimony';
 
+interface TestimonyFormData {
+  author: string;
+  title: string;
+  content: string;
+  category: string;
+}
+
 export default function TestimoniesPage() {
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,45 +25,65 @@ export default function TestimoniesPage() {
 
   const fetchTestimonies = async () => {
     try {
+      setIsLoading(true);
       const response = await fetch('/api/testimonies');
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
       const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
+      if (!Array.isArray(data)) {
+        throw new Error('Invalid data format');
+      }
+      
       setTestimonies(data);
     } catch (error) {
       console.error('Fetch error:', error);
-      setError('Failed to fetch testimonies');
+      setError(error instanceof Error ? error.message : 'Failed to fetch testimonies');
     } finally {
       setIsLoading(false);
     }
   };
 
-  const handleSubmit = async (formData: any) => {
+  const handleSubmit = async (formData: TestimonyFormData) => {
     try {
       const response = await fetch('/api/testimonies', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       });
-      
-      const data = await response.json();
-      if (!response.ok) throw new Error(data.error);
-      
-      setTestimonies([data, ...testimonies]);
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const newTestimony = await response.json();
+      setTestimonies(prev => [newTestimony, ...prev]);
+      setShowForm(false);
     } catch (error) {
       console.error('Submit error:', error);
-      setError('Failed to submit testimony');
+      setError(error instanceof Error ? error.message : 'Failed to submit testimony');
     }
   };
 
-  if (isLoading) return (
-    <div className="flex items-center justify-center min-h-screen">
-      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-    </div>
-  );
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+  }
 
-  if (error) return (
-    <div className="text-center text-red-500 p-4">{error}</div>
-  );
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="text-red-500">{error}</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
