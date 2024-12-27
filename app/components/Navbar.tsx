@@ -8,7 +8,7 @@ import { FaDoorClosed, FaDoorOpen } from 'react-icons/fa6';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 
 const Navbar = () => {
-  const pathname = usePathname(); // For active state tracking
+  const pathname = usePathname() || ''; // For active state tracking
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [header, setHeader] = useState(false);
 
@@ -32,6 +32,7 @@ const Navbar = () => {
   const routes = [
     { path: '/', label: 'Home' },
     { path: '/mood', label: 'Moods' },
+    { path: '/testimonies', label: 'Testimony' },
     { path: '/mission', label: 'Our Mission' },
     { path: '/contact', label: 'Contact Us' },
     { path: '/mood-of-the-day', label: 'Mood Of The Day' },

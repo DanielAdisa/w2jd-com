@@ -9,7 +9,8 @@ export const testimonies: Testimony[] = [
     content: 'My testimony of finding peace...',
     category: 'Prayer',
     likes: 12,
-    image: '/testimonies/peace.jpg'
+    image: '/testimonies/peace.jpg',
+    createdAt: new Date(),
   },
   // Add more testimonies
 ];

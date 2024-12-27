@@ -12,3 +12,13 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Testimony {
+  id        String   @id @default(uuid())
+  author    String
+  title     String
+  content   String
+  category  String   @default("General")
+  createdAt DateTime @default(now())
+  likes     Int      @default(0)
+}
