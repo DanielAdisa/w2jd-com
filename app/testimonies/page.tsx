@@ -6,15 +6,6 @@ import TestimonyCard from '../components/TestimonyCard';
 import TestimonyForm from '../components/TestimonyForm';
 import { Testimony } from '../types/testimony';
 
-
-export interface TestimonyFormData {
-  author: string;
-  title: string;
-  content: string;
-  category: string;
-}
-// Removed duplicate TestimonyFormData interface
-
 export default function TestimoniesPage() {
   const [testimonies, setTestimonies] = useState<Testimony[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -27,50 +18,45 @@ export default function TestimoniesPage() {
 
   const fetchTestimonies = async () => {
     try {
-      setIsLoading(true);
       const response = await fetch('/api/testimonies');
       const data = await response.json();
-      
-      if (!response.ok) {
-        throw new Error(data.error || `HTTP error! status: ${response.status}`);
-      }
-      
-      setTestimonies(Array.isArray(data) ? data : []);
+      if (!response.ok) throw new Error(data.error);
+      setTestimonies(data);
     } catch (error) {
       console.error('Fetch error:', error);
-      setError(error instanceof Error ? error.message : 'Failed to fetch testimonies');
+      setError('Failed to fetch testimonies');
     } finally {
       setIsLoading(false);
     }
   };
 
-
-  const handleSubmit = async (data: TestimonyFormData): Promise<void> => {
+  const handleSubmit = async (formData: any) => {
     try {
-      setIsLoading(true);
       const response = await fetch('/api/testimonies', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
       });
-
-      const result = await response.json();
-
-      if (!response.ok) {
-        throw new Error(result.error || `HTTP error! status: ${response.status}`);
-      }
-
-      setTestimonies((prevTestimonies) => [result, ...prevTestimonies]);
-      setShowForm(false);
+      
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error);
+      
+      setTestimonies([data, ...testimonies]);
     } catch (error) {
       console.error('Submit error:', error);
-      setError(error instanceof Error ? error.message : 'Failed to submit testimony');
-    } finally {
-      setIsLoading(false);
+      setError('Failed to submit testimony');
     }
   };
+
+  if (isLoading) return (
+    <div className="flex items-center justify-center min-h-screen">
+      <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+    </div>
+  );
+
+  if (error) return (
+    <div className="text-center text-red-500 p-4">{error}</div>
+  );
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900">
