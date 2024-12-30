@@ -4,10 +4,14 @@ import Link from 'next/link';
 import { moods } from '@/data/moods';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Footer from '@/app/components/Footer'
-;
+import Footer from '@/app/components/Footer';
+import { useState } from 'react';
 
 const MoodListPage = () => {
+  const [filter, setFilter] = useState<'Positive' | 'Challenging'>('Positive');
+
+  const filteredMoods = moods.filter(mood => mood.category === filter);
+
   return (
     <div className="relative bg-purple-800/40 min-h-screen flex flex-col overflow-hidden">
       {/* Base Background */}
@@ -67,12 +71,37 @@ const MoodListPage = () => {
             </p>
           </motion.div>
 
+          <div className="flex justify-center mb-8">
+            <label className="mr-4 text-white">
+              <input
+                type="radio"
+                name="filter"
+                value="Positive"
+                checked={filter === 'Positive'}
+                onChange={() => setFilter('Positive')}
+                className="mr-2"
+              />
+              Positive
+            </label>
+            <label className="text-white">
+              <input
+                type="radio"
+                name="filter"
+                value="Challenging"
+                checked={filter === 'Challenging'}
+                onChange={() => setFilter('Challenging')}
+                className="mr-2"
+              />
+              Challenging
+            </label>
+          </div>
+
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
-            {moods.map((mood, index) => (
+            {filteredMoods.map((mood, index) => (
               <motion.div
                 key={mood.id}
                 initial={{ opacity: 0, y: 20 }}

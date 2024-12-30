@@ -1,57 +1,82 @@
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { format } from 'date-fns';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Heart } from 'lucide-react';
 import { Testimony } from '@/app/types/testimony';
 
 interface TestimonyCardProps {
   testimony: Testimony;
+  onLike: (id: string) => void;
 }
 
-export default function TestimonyCard({ testimony }: TestimonyCardProps) {
-  const [isLiked, setIsLiked] = useState(false);
-  const [likes, setLikes] = useState(testimony.likes || 0);
+export default function TestimonyCard({ testimony, onLike }: TestimonyCardProps) {
   const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [likes, setLikes] = useState(testimony.likes);
+  const [isLiked, setIsLiked] = useState(false);
+
+  useEffect(() => {
+    const likedTestimonies = JSON.parse(localStorage.getItem('likedTestimonies') || '{}');
+    if (testimony.id && likedTestimonies[testimony.id]) {
+      setIsLiked(true);
+    }
+  }, [testimony.id]);
 
   const handleLike = async () => {
-    if (isLiked || isLoading) return;
-    
+    if (isLoading || isLiked) return;
     setIsLoading(true);
-    setError(null);
-
-    // Optimistic update
-    setLikes(prev => prev + 1);
-    setIsLiked(true);
 
     try {
       const response = await fetch(`/api/testimonies/${testimony.id}/like`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        }
+        method: 'POST'
       });
 
       if (!response.ok) {
-        // Revert optimistic update on error
-        setLikes(prev => prev - 1);
-        setIsLiked(false);
-        const contentType = response.headers.get('content-type');
-        if (contentType && contentType.indexOf('application/json') !== -1) {
-          const errorData = await response.json();
-          throw new Error(errorData.error || 'Failed to update likes');
-        } else {
-          throw new Error('Failed to update likes');
-        }
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update likes');
       }
 
-      const data = await response.json();
-      // Update with actual server data
-      setLikes(data.likes);
-    } catch (err) {
-      setError('Failed to like testimony');
-      console.error('Like error:', err);
+      const updatedTestimony = await response.json();
+      setLikes(updatedTestimony.likes);
+      setIsLiked(true);
+
+      const likedTestimonies = JSON.parse(localStorage.getItem('likedTestimonies') || '{}');
+      if (testimony.id) {
+        likedTestimonies[testimony.id] = true;
+      }
+      localStorage.setItem('likedTestimonies', JSON.stringify(likedTestimonies));
+    } catch (error) {
+      console.error('Like error:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleUnlike = async () => {
+    if (isLoading || !isLiked) return;
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(`/api/testimonies/${testimony.id}/unlike`, {
+        method: 'POST'
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || 'Failed to update likes');
+      }
+
+      const updatedTestimony = await response.json();
+      setLikes(updatedTestimony.likes);
+      setIsLiked(false);
+
+      const likedTestimonies = JSON.parse(localStorage.getItem('likedTestimonies') || '{}');
+      if (testimony.id) {
+        delete likedTestimonies[testimony.id];
+      }
+      localStorage.setItem('likedTestimonies', JSON.stringify(likedTestimonies));
+    } catch (error) {
+      console.error('Unlike error:', error);
     } finally {
       setIsLoading(false);
     }
@@ -99,17 +124,17 @@ export default function TestimonyCard({ testimony }: TestimonyCardProps) {
         </div>
         
         <button
-          onClick={handleLike}
+          onClick={isLiked ? handleUnlike : handleLike}
           className="flex items-center gap-1 text-sm"
-          disabled={isLiked || isLoading}
+          disabled={isLoading}
         >
-          <Heart
-            className={`w-5 h-5 transition-all duration-300 ${
-              isLiked ? 'fill-red-500 text-red-500' : 'text-slate-400'
-            }`}
-          />
+          <motion.div
+            whileTap={{ scale: 1.2 }}
+            className={`w-5 h-5 transition-all duration-300 ${isLiked ? 'fill-red-500 text-red-500' : 'text-slate-400'}`}
+          >
+            <Heart />
+          </motion.div>
           <span className="text-slate-400">{likes}</span>
-          {error && <span className="text-red-500 text-xs ml-2">{error}</span>}
         </button>
       </div>
     </motion.div>

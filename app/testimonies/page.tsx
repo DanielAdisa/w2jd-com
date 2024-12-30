@@ -104,7 +104,7 @@ export default function TestimoniesPage() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {testimonies.map((testimony) => (
-            <TestimonyCard key={testimony.id} testimony={testimony} />
+            <TestimonyCard key={testimony.id} testimony={testimony} onLike={(id) => console.log(`Liked testimony with id: ${id}`)} />
           ))}
         </motion.div>
       </div>

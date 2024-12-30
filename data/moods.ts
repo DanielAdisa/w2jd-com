@@ -2,327 +2,261 @@ export const moods = [
   {
     id: '1',
     title: 'Joyful',
-    description: 'Rejoice in the Lord always; let His joy fill your heart and overflow into your life.',
-    images: [
-      '/Assets/joy.jpg',
-
-    ],
-    personalStory: 
-      'There was a season in my life when joy felt elusive. I had tied my happiness to things like career success and relationships, which often left me feeling empty. One day, I stumbled upon Philippians 4:4, which challenged me to rejoice in the Lord always. Slowly, I started shifting my focus from my circumstances to God’s unchanging love. I began starting my mornings by thanking Him for the smallest blessings: the sunrise, the sound of birds, even the ability to breathe. Over time, His joy replaced my anxiety. I learned that true joy comes from trusting His promises and walking in His presence daily.',
+    description: 'Feeling great happiness and delight.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Experiencing the joy of the Lord in every situation.',
     verses: [
       'Philippians 4:4 - Rejoice in the Lord always. I will say it again: Rejoice!',
-      'Psalm 16:11 - You make known to me the path of life; in Your presence there is fullness of joy; at Your right hand are pleasures forevermore.',
-      'John 15:11 - These things I have spoken to you, that My joy may be in you, and that your joy may be full.',
+      'Nehemiah 8:10 - The joy of the Lord is your strength.'
     ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Philippians+4%3A4&version=NIV',
-      'https://www.crosswalk.com/faith/spiritual-life/what-is-biblical-joy.html',
-    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/joy-bible-verses/'],
+    category: 'Positive'
   },
   {
     id: '2',
-    title: 'Peaceful',
-    description: 'Rest in the peace that surpasses all understanding and let God’s presence calm your storms.',
-    images: [
-      '/Assets/peace.jpg',
-
-    ],
-    personalStory: 
-      'I was overwhelmed with anxiety until I started casting my worries onto Him in prayer. It wasn’t instant, but the peace that followed was undeniable. You can also find this peace by trusting Him with your burdens.',
+    title: 'Grateful',
+    description: 'Feeling or showing an appreciation of kindness.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Gratitude for the blessings and grace received.',
     verses: [
-      'Philippians 4:7 - And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.',
-      'John 14:27 - Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.',
-      'Isaiah 26:3 - You will keep in perfect peace those whose minds are steadfast, because they trust in you.',
+      '1 Thessalonians 5:18 - Give thanks in all circumstances; for this is God’s will for you in Christ Jesus.',
+      'Psalm 107:1 - Give thanks to the Lord, for he is good; his love endures forever.'
     ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Philippians+4%3A7&version=NIV',
-      'https://www.desiringgod.org/articles/how-to-find-peace-in-chaos',
-    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/gratitude-bible-verses/'],
+    category: 'Positive'
   },
   {
     id: '3',
-    title: 'Hopeful',
-    description: 'Let hope arise, knowing that God is faithful to His promises and His plans for you are good.',
-    images: [
-      '/Assets/hope.jpg',
-
-    ],
-    personalStory: 
-      'When life seemed hopeless, I clung to His promises and found renewed strength. His word reminded me that He works all things for good. Stay hopeful, for He has a future planned for you.',
+    title: 'Peaceful',
+    description: 'Free from disturbance; tranquil.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Finding peace in God’s presence and promises.',
     verses: [
-      'Jeremiah 29:11 - For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.',
-      'Romans 15:13 - May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.',
-      'Psalm 39:7 - And now, O Lord, for what do I wait? My hope is in you.',
+      'John 14:27 - Peace I leave with you; my peace I give you. I do not give to you as the world gives. Do not let your hearts be troubled and do not be afraid.',
+      'Philippians 4:7 - And the peace of God, which transcends all understanding, will guard your hearts and your minds in Christ Jesus.'
     ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Jeremiah+29%3A11&version=NIV',
-      'https://www.gotquestions.org/biblical-hope.html',
-    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/peace-bible-verses/'],
+    category: 'Positive'
   },
   {
     id: '4',
-    title: 'Thankful',
-    description: 'In every situation, give thanks to the Lord, for gratitude shifts our focus from problems to His blessings.',
-    images: [
-      '/Assets/thank.jpg',
-
-    ],
-    personalStory: 
-      'Gratitude transformed my perspective. Instead of dwelling on what I lacked, I praised God for His endless provisions. Cultivating thankfulness can change your life too!',
+    title: 'Hopeful',
+    description: 'Feeling or inspiring optimism about a future event.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Holding onto hope in God’s promises.',
     verses: [
-      '1 Thessalonians 5:18 - Give thanks in all circumstances; for this is the will of God in Christ Jesus for you.',
-      'Psalm 107:1 - Oh give thanks to the Lord, for he is good, for his steadfast love endures forever!',
-      'Colossians 3:15 - And let the peace of Christ rule in your hearts, to which indeed you were called in one body. And be thankful.',
+      'Jeremiah 29:11 - For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.',
+      'Romans 15:13 - May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.'
     ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=1+Thessalonians+5%3A18&version=NIV',
-      'https://www.christianity.com/christian-life/why-gratitude-is-important.html',
-    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/hope-bible-verses/'],
+    category: 'Positive'
   },
   {
     id: '5',
-    title: 'Broken',
-    description: 'When your heart feels shattered, trust that God is near the brokenhearted and saves those crushed in spirit.',
-    images: [
-      '/Assets/broke.jpg',
-
-    ],
-    personalStory: 
-      'In my brokenness, I felt unworthy and lost. But God reminded me that He uses broken vessels to shine His light. Surrender your pain to Him, and let Him heal you.',
-    verses: [
-      'Psalm 34:18 - The Lord is near to the brokenhearted and saves the crushed in spirit.',
-      'Isaiah 61:1 - The Spirit of the Lord God is upon me, because the Lord has anointed me to bring good news to the poor; he has sent me to bind up the brokenhearted, to proclaim liberty to the captives, and the opening of the prison to those who are bound.',
-      'Matthew 11:28 - Come to me, all who labor and are heavy laden, and I will give you rest.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Psalm+34%3A18&version=NIV',
-      'https://www.desiringgod.org/articles/healing-from-brokenness',
-    ],
-  },
-  {
-    id: '6',
-    title: 'Lonely',
-    description: 'Even when you feel alone, God is always with you. He will never leave nor forsake you.',
-    images: [
-      '/Assets/lonely.jpg',
-
-    ],
-    personalStory: 
-      'Loneliness consumed me until I realized I was never truly alone. God’s presence brought comfort and purpose. Remember, He is always with you.',
-    verses: [
-      'Deuteronomy 31:6 - Be strong and courageous. Do not fear or be in dread of them, for it is the Lord your God who goes with you. He will not leave you or forsake you.',
-      'Psalm 23:4 - Even though I walk through the valley of the shadow of death, I will fear no evil, for you are with me; your rod and your staff, they comfort me.',
-      'Matthew 28:20 - Teaching them to observe all that I have commanded you. And behold, I am with you always, to the end of the age.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Deuteronomy+31%3A6&version=NIV',
-      'https://www.gotquestions.org/loneliness.html',
-    ],
-  },
-  {
-    id: '7',
-    title: 'Forgiven',
-    description: 'Rejoice in the freedom of forgiveness through Christ. His mercy is new every morning.',
-    images: [
-      '/Assets/forgiven.jpg',
-
-    ],
-    personalStory: 
-      'I struggled to forgive myself for past mistakes until I grasped the depth of His forgiveness. Let His grace wash over you, and forgive yourself too.',
-    verses: [
-      '1 John 1:9 - If we confess our sins, he is faithful and just to forgive us our sins and to cleanse us from all unrighteousness.',
-      'Ephesians 1:7 - In him we have redemption through his blood, the forgiveness of our trespasses, according to the riches of his grace.',
-      'Psalm 103:12 - As far as the east is from the west, so far does he remove our transgressions from us.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=1+John+1%3A9&version=NIV',
-      'https://www.christianity.com/wiki/salvation/what-is-forgiveness-according-to-the-bible.html',
-    ],
-  },
-  {
-    id: '8',
-    title: 'Victorious',
-    description: 'Through Christ, you are more than a conqueror. Walk in His victory every day.',
-    images: [
-      '/Assets/victor.jpg',
-
-    ],
-    personalStory: 
-      'Challenges made me doubt myself, but through Christ, I learned that victory is already mine. Lean on His strength, and you will overcome.',
-    verses: [
-      'Romans 8:37 - No, in all these things we are more than conquerors through him who loved us.',
-      '1 Corinthians 15:57 - But thanks be to God, who gives us the victory through our Lord Jesus Christ.',
-      '1 John 5:4 - For everyone who has been born of God overcomes the world. And this is the victory that has overcome the world—our faith.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Romans+8%3A37&version=NIV',
-      'https://www.crosswalk.com/faith/spiritual-life/victory-in-jesus.html',
-    ],
-  },
-  {
-    id: '9',
-    title: 'Loved',
-    description: 'You are deeply loved by God. His love for you is unconditional and everlasting.',
-    images: [
-      '/Assets/love.jpg',
-
-    ],
-    personalStory: 
-      'There were times when I felt unlovable and rejected. But God’s love broke through my insecurities and reminded me of my worth. His love is a constant source of comfort and strength.',
-    verses: [
-      'Romans 8:38-39 - For I am sure that neither death nor life, nor angels nor rulers, nor things present nor things to come, nor powers, nor height nor depth, nor anything else in all creation, will be able to separate us from the love of God in Christ Jesus our Lord.',
-      '1 John 4:9-10 - In this the love of God was made manifest among us, that God sent his only Son into the world, so that we might live through him. In this is love, not that we have loved God but that he loved us and sent his Son to be the propitiation for our sins.',
-      'Jeremiah 31:3 - The Lord appeared to him from far away. I have loved you with an everlasting love; therefore I have continued my faithfulness to you.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Romans+8%3A38-39&version=NIV',
-      'https://www.desiringgod.org/articles/god-loves-you',
-    ],
-  },
-  {
-    id: '10',
-    title: 'Empowered',
-    description: 'God has given you the power and authority to overcome any challenge. Walk in His strength.',
-    images: [
-      '/Assets/empower.jpg',
-
-    ],
-    personalStory: 
-      'I used to feel powerless in the face of adversity. But through prayer and reliance on God’s strength, I discovered the power within me. His Spirit empowers us to do great things.',
-    verses: [
-      'Acts 1:8 - But you will receive power when the Holy Spirit has come upon you, and you will be my witnesses in Jerusalem and in all Judea and Samaria, and to the end of the earth.',
-      'Ephesians 3:20 - Now to him who is able to do far more abundantly than all that we ask or think, according to the power at work within us.',
-      '2 Timothy 1:7 - For God gave us a spirit not of fear but of power and love and self-control.',
-    ],
-    resources: [
-      'https://www.biblegateway.com/passage/?search=Acts+1%3A8&version=NIV',
-      'https://www.crosswalk.com/faith/spiritual-life/empowered-by-the-holy-spirit.html',
-    ],
-  },
-  {
-    id: '11',
-    title: 'Anxious',
-    category: 'challenging',
-    description: 'When anxiety overwhelms, cast your cares upon Him for He cares for you.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'In moments of intense anxiety, I found peace through prayer and meditation on His word.',
-    verses: [
-      'Philippians 4:6-7 - Do not be anxious about anything, but in every situation, by prayer and petition, present your requests to God.',
-      '1 Peter 5:7 - Cast all your anxiety on him because he cares for you.'
-    ],
-    resources: ['https://www.biblestudytools.com/topical-verses/worry-and-anxiety-bible-verses/']
-  },
-  {
-    id: '12',
-    title: 'Courageous',
-    category: 'positive',
-    description: 'Stand firm in faith, knowing God has equipped you with strength and courage.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Faith gave me courage to face seemingly impossible situations.',
-    verses: [
-      'Joshua 1:9 - Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.'
-    ],
-    resources: ['https://www.gotquestions.org/Bible-courage.html']
-  },
-  {
-    id: '13',
-    title: 'Doubtful',
-    category: 'challenging',
-    description: 'When doubt creeps in, remember His faithfulness and promises.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Through seasons of doubt, His truth remained my anchor.',
-    verses: [
-      'Mark 9:24 - Lord, I believe; help my unbelief!',
-      'James 1:6 - But let him ask in faith, with no doubting'
-    ],
-    resources: ['https://www.desiringgod.org/articles/faith-and-doubt']
-  },
-  {
-    id: '14',
-    title: 'Renewed',
-    category: 'positive',
-    description: 'Experience the refreshing power of His Spirit making all things new.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'His grace brings daily renewal and fresh perspective.',
-    verses: [
-      '2 Corinthians 5:17 - Therefore, if anyone is in Christ, he is a new creation.'
-    ],
-    resources: ['https://www.biblestudytools.com/bible-study/topical-studies/what-does-it-mean-to-be-a-new-creation.html']
-  },
-  {
-    id: '15',
-    title: 'Weary',
-    category: 'challenging',
-    description: 'Find rest in His presence when life leaves you exhausted.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'In my weariness, I discovered His strength and perfect rest.',
-    verses: [
-      'Matthew 11:28-30 - Come to me, all who labor and are heavy laden, and I will give you rest.'
-    ],
-    resources: ['https://www.christianity.com/wiki/christian-life/what-does-the-bible-say-about-rest.html']
-  },{
-    id: '16',
-    title: 'Grateful',
-    category: 'positive',
-    description: 'Cultivate a heart of thanksgiving, recognizing God’s blessings in every season.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Through practicing gratitude daily, I discovered countless blessings I had overlooked. Even in difficult times, there was always something to thank God for - from the air in my lungs to His faithful promises.',
-    verses: [
-      'Colossians 3:17 - And whatever you do, in word or deed, do everything in the name of the Lord Jesus, giving thanks to God the Father through him.',
-      'Psalm 100:4 - Enter his gates with thanksgiving, and his courts with praise! Give thanks to him; bless his name!'
-    ],
-    resources: ['https://www.biblestudytools.com/topical-verses/thanksgiving-bible-verses/']
-  },
-  {
-    id: '17',
-    title: 'Discouraged',
-    category: 'challenging',
-    description: 'When disappointments come, remember God’s faithfulness and His power to restore.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'After repeated setbacks, discouragement felt overwhelming. But God’s word reminded me that He works all things for good, and His timing is perfect.',
-    verses: [
-      'Isaiah 41:10 - Fear not, for I am with you; be not dismayed, for I am your God.',
-      'Psalm 34:18 - The LORD is near to the brokenhearted and saves the crushed in spirit.'
-    ],
-    resources: ['https://www.desiringgod.org/articles/what-to-do-when-discouraged']
-  },
-  {
-    id: '18',
-    title: 'Confident',
-    category: 'positive',
-    description: 'Stand firm in who God says you are, confident in His promises and purpose.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Learning to root my confidence in God’s unchanging character rather than changing circumstances transformed my perspective on challenges.',
-    verses: [
-      'Philippians 1:6 - Being confident of this very thing, that He who has begun a good work in you will complete it.',
-      'Hebrews 10:35-36 - Therefore do not cast away your confidence, which has great reward.'
-    ],
-    resources: ['https://www.gotquestions.org/Bible-confidence.html']
-  },
-  {
-    id: '19',
-    title: 'Guilty',
-    category: 'challenging',
-    description: 'Exchange guilt for grace, accepting God’s complete forgiveness and mercy.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Guilt kept me in chains until I truly understood the depth of God’s forgiveness. His grace is greater than all our sin.',
-    verses: [
-      'Romans 8:1 - There is therefore now no condemnation for those who are in Christ Jesus.',
-      '1 John 1:9 - If we confess our sins, he is faithful and just to forgive us.'
-    ],
-    resources: ['https://www.christianity.com/wiki/sin/what-does-the-bible-say-about-guilt.html']
-  },
-  {
-    id: '20',
     title: 'Faithful',
-    category: 'positive',
-    description: 'Walk in faithfulness, trusting God’s promises even when the path seems unclear.',
-    images: ['/Assets/victor.jpg'],
-    personalStory: 'Through seasons of uncertainty, choosing faith over fear led to experiencing God’  s faithfulness in remarkable ways.',
+    description: 'Remaining loyal and steadfast.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Through seasons of uncertainty, choosing faith over fear led to experiencing God’s faithfulness in remarkable ways.',
     verses: [
       'Hebrews 11:1 - Now faith is the substance of things hoped for, the evidence of things not seen.',
       'Lamentations 3:23 - Great is your faithfulness.'
     ],
-    resources: ['https://www.biblestudytools.com/topical-verses/faith-bible-verses/']
+    resources: ['https://www.biblestudytools.com/topical-verses/faith-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '6',
+    title: 'Anxious',
+    description: 'Experiencing worry, unease, or nervousness.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Struggling with anxiety but finding peace in God’s promises.',
+    verses: [
+      'Philippians 4:6 - Do not be anxious about anything, but in every situation, by prayer and petition, with thanksgiving, present your requests to God.',
+      '1 Peter 5:7 - Cast all your anxiety on him because he cares for you.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/anxiety-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '7',
+    title: 'Sad',
+    description: 'Feeling sorrow or unhappiness.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Navigating through sadness with God’s comfort.',
+    verses: [
+      'Psalm 34:18 - The Lord is close to the brokenhearted and saves those who are crushed in spirit.',
+      'Matthew 5:4 - Blessed are those who mourn, for they will be comforted.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/comfort-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '8',
+    title: 'Fearful',
+    description: 'Feeling afraid or anxious.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Overcoming fear through faith in God’s protection.',
+    verses: [
+      'Isaiah 41:10 - So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.',
+      '2 Timothy 1:7 - For the Spirit God gave us does not make us timid, but gives us power, love and self-discipline.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/fear-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '9',
+    title: 'Angry',
+    description: 'Feeling or showing strong annoyance, displeasure, or hostility.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Dealing with anger and finding peace in God’s word.',
+    verses: [
+      'Ephesians 4:26 - In your anger do not sin: Do not let the sun go down while you are still angry.',
+      'James 1:19 - My dear brothers and sisters, take note of this: Everyone should be quick to listen, slow to speak and slow to become angry.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/anger-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '10',
+    title: 'Lonely',
+    description: 'Feeling sad because one has no friends or company.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Finding companionship in God’s presence during lonely times.',
+    verses: [
+      'Deuteronomy 31:6 - Be strong and courageous. Do not be afraid or terrified because of them, for the Lord your God goes with you; he will never leave you nor forsake you.',
+      'Psalm 68:6 - God sets the lonely in families, he leads out the prisoners with singing; but the rebellious live in a sun-scorched land.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/loneliness-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '11',
+    title: 'Confused',
+    description: 'Unable to think clearly; bewildered.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Seeking clarity and direction from God during confusing times.',
+    verses: [
+      'Proverbs 3:5-6 - Trust in the Lord with all your heart and lean not on your own understanding; in all your ways submit to him, and he will make your paths straight.',
+      'James 1:5 - If any of you lacks wisdom, you should ask God, who gives generously to all without finding fault, and it will be given to you.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/wisdom-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '12',
+    title: 'Depressed',
+    description: 'In a state of general unhappiness or despondency.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Battling depression with the hope and strength found in God.',
+    verses: [
+      'Psalm 34:17-18 - The righteous cry out, and the Lord hears them; he delivers them from all their troubles. The Lord is close to the brokenhearted and saves those who are crushed in spirit.',
+      'Matthew 11:28 - Come to me, all you who are weary and burdened, and I will give you rest.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/depression-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '13',
+    title: 'Stressed',
+    description: 'Feeling mental or emotional strain or tension.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Finding relief from stress through prayer and trust in God.',
+    verses: [
+      'Matthew 6:34 - Therefore do not worry about tomorrow, for tomorrow will worry about itself. Each day has enough trouble of its own.',
+      'Psalm 55:22 - Cast your cares on the Lord and he will sustain you; he will never let the righteous be shaken.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/stress-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '14',
+    title: 'Overwhelmed',
+    description: 'Feeling buried or drowned beneath a huge mass.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Overcoming feelings of being overwhelmed by relying on God’s strength.',
+    verses: [
+      'Isaiah 40:31 - But those who hope in the Lord will renew their strength. They will soar on wings like eagles; they will run and not grow weary, they will walk and not be faint.',
+      'Psalm 61:2 - From the ends of the earth I call to you, I call as my heart grows faint; lead me to the rock that is higher than I.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/strength-bible-verses/'],
+    category: 'Challenging'
+  },
+  {
+    id: '15',
+    title: 'Hopeful',
+    description: 'Feeling or inspiring optimism about a future event.',
+    images:['/Assets/joy.jpg'],
+    personalStory: 'Holding onto hope in God’s promises.',
+    verses: [
+      'Jeremiah 29:11 - For I know the plans I have for you, declares the Lord, plans for welfare and not for evil, to give you a future and a hope.',
+      'Romans 15:13 - May the God of hope fill you with all joy and peace in believing, so that by the power of the Holy Spirit you may abound in hope.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/hope-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '16',
+    title: 'Encouraged',
+    description: 'Given support, confidence, or hope.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Feeling uplifted and motivated by God’s word.',
+    verses: [
+      'Joshua 1:9 - Have I not commanded you? Be strong and courageous. Do not be afraid; do not be discouraged, for the Lord your God will be with you wherever you go.',
+      'Isaiah 41:10 - So do not fear, for I am with you; do not be dismayed, for I am your God. I will strengthen you and help you; I will uphold you with my righteous right hand.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/encouragement-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '17',
+    title: 'Loved',
+    description: 'Feeling deep affection or attachment.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Experiencing the unconditional love of God.',
+    verses: [
+      'Romans 8:38-39 - For I am convinced that neither death nor life, neither angels nor demons, neither the present nor the future, nor any powers, neither height nor depth, nor anything else in all creation, will be able to separate us from the love of God that is in Christ Jesus our Lord.',
+      '1 John 4:19 - We love because he first loved us.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/love-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '18',
+    title: 'Blessed',
+    description: 'Endowed with divine favor and protection.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Recognizing and appreciating God’s blessings.',
+    verses: [
+      'Numbers 6:24-26 - The Lord bless you and keep you; the Lord make his face shine on you and be gracious to you; the Lord turn his face toward you and give you peace.',
+      'Ephesians 1:3 - Praise be to the God and Father of our Lord Jesus Christ, who has blessed us in the heavenly realms with every spiritual blessing in Christ.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/blessing-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '19',
+    title: 'Forgiven',
+    description: 'Granted pardon for a wrongdoing.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Experiencing the freedom and peace of God’s forgiveness.',
+    verses: [
+      '1 John 1:9 - If we confess our sins, he is faithful and just and will forgive us our sins and purify us from all unrighteousness.',
+      'Ephesians 4:32 - Be kind and compassionate to one another, forgiving each other, just as in Christ God forgave you.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/forgiveness-bible-verses/'],
+    category: 'Positive'
+  },
+  {
+    id: '20',
+    title: 'Content',
+    description: 'In a state of peaceful happiness.',
+    images: ['/Assets/joy.jpg'],
+    personalStory: 'Finding contentment in God’s provision and presence.',
+    verses: [
+      'Philippians 4:11-13 - I am not saying this because I am in need, for I have learned to be content whatever the circumstances. I know what it is to be in need, and I know what it is to have plenty. I have learned the secret of being content in any and every situation, whether well fed or hungry, whether living in plenty or in want. I can do all this through him who gives me strength.',
+      '1 Timothy 6:6 - But godliness with contentment is great gain.'
+    ],
+    resources: ['https://www.biblestudytools.com/topical-verses/contentment-bible-verses/'],
+    category: 'Positive'
   }
 ];

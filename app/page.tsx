@@ -2,14 +2,25 @@
 
 import AboutUsSection from "./components/AboutUs";
 import HeroSection from "./components/HeroSection";
-import MoodsGallery from "./components/MoodsGallery";
-import SearchBar from "./components/SearchBar";
-import { moods } from '@/data/moods';
-
 import SplashScreen from './components/SplashScreen';
 import { useState, useEffect } from 'react';
-import TestimonyCard from "./components/TestimonyCard";
-import TestimonyForm from "./components/TestimonyForm";
+import { moods } from '@/data/moods';
+import Image from 'next/image';
+import SearchBar from "./components/SearchBar";
+
+interface Mood {
+  id: string;
+  title: string;
+  description: string;
+  images: string[];
+  personalStory: string;
+  verses: string[];
+  resources: string[];
+}
+
+interface SearchBarProps {
+  moods: Mood[];
+}
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
@@ -29,14 +40,13 @@ export default function Home() {
       ) : (
         <main>
           {/* Your main content */}
-          <section className="p-">
           <HeroSection />
-          {/* <SearchBar moods={moods} /> */}
+          {/* <div className=" mx-auto p-4 max-w-2xl">
+          <SearchBar moods={moods} />
+        </div> */}
+          
           <AboutUsSection/>
-          {/* <TestimonyCard/> */}
-          {/* <TestimonyForm/> */}
-          {/* <MoodsGallery/> */}
-          </section>
+
         </main>
       )}
     </div>

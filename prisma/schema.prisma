@@ -23,3 +23,9 @@ model Testimony {
   createdAt DateTime @default(now())
   likes     Int      @default(0)
 }
+
+model Vote {
+  id        String   @id @default(cuid())
+  isGood    Boolean
+  createdAt DateTime @default(now())
+}
