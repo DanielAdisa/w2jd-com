@@ -12,10 +12,49 @@ interface TestimonyCardProps {
 export default function TestimonyCard({ testimony }: TestimonyCardProps) {
   const [isLiked, setIsLiked] = useState(false);
   const [likes, setLikes] = useState(testimony.likes || 0);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleLike = () => {
-    setIsLiked(!isLiked);
-    setLikes(prev => isLiked ? prev - 1 : prev + 1);
+  const handleLike = async () => {
+    if (isLiked || isLoading) return;
+    
+    setIsLoading(true);
+    setError(null);
+
+    // Optimistic update
+    setLikes(prev => prev + 1);
+    setIsLiked(true);
+
+    try {
+      const response = await fetch(`/api/testimonies/${testimony.id}/like`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (!response.ok) {
+        // Revert optimistic update on error
+        setLikes(prev => prev - 1);
+        setIsLiked(false);
+        const contentType = response.headers.get('content-type');
+        if (contentType && contentType.indexOf('application/json') !== -1) {
+          const errorData = await response.json();
+          throw new Error(errorData.error || 'Failed to update likes');
+        } else {
+          throw new Error('Failed to update likes');
+        }
+      }
+
+      const data = await response.json();
+      // Update with actual server data
+      setLikes(data.likes);
+    } catch (err) {
+      setError('Failed to like testimony');
+      console.error('Like error:', err);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -62,6 +101,7 @@ export default function TestimonyCard({ testimony }: TestimonyCardProps) {
         <button
           onClick={handleLike}
           className="flex items-center gap-1 text-sm"
+          disabled={isLiked || isLoading}
         >
           <Heart
             className={`w-5 h-5 transition-all duration-300 ${
@@ -69,6 +109,7 @@ export default function TestimonyCard({ testimony }: TestimonyCardProps) {
             }`}
           />
           <span className="text-slate-400">{likes}</span>
+          {error && <span className="text-red-500 text-xs ml-2">{error}</span>}
         </button>
       </div>
     </motion.div>
