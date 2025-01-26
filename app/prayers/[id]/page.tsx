@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrayingHands, faTrash } from '@fortawesome/free-solid-svg-icons';
 import { Clock, Share2 } from 'lucide-react';
+import { FaPersonPraying } from 'react-icons/fa6';
 
 const PrayerRequestDetail = () => {
   const { id } = useParams() ?? {};
@@ -361,8 +362,7 @@ const PrayerRequestDetail = () => {
         className="flex items-center gap-2 px-5 w-full py-2 bg-gradient-to-r from-yellow-400/10 
                    to-amber-400/5 rounded-full border border-yellow-400/20"
       >
-        <FontAwesomeIcon 
-          icon={faPrayingHands} 
+        <FaPersonPraying 
           className="w-5 h-5 text-yellow-400 group-hover:scale-110 
                      transition-transform duration-300" 
         />
@@ -477,8 +477,7 @@ const PrayerRequestDetail = () => {
             } backdrop-blur-md text-white p-4 rounded-full shadow-lg transition-all duration-300`}
             disabled={isPraying || isLoading}
           >
-            <FontAwesomeIcon 
-              icon={faPrayingHands} 
+            <FaPersonPraying 
               className={`w-6 h-6 ${isPraying ? 'text-gray-300' : 'text-white'}`} 
             />
             <span className="absolute right-full mr-4 bg-black/80 text-white px-4 py-2 rounded-lg 

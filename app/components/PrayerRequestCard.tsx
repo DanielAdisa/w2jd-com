@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Heart, Clock, Trash } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { formatDistanceToNow } from 'date-fns/formatDistanceToNow';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPrayingHands } from '@fortawesome/free-solid-svg-icons';
+
+import { FaPersonPraying } from 'react-icons/fa6';
 
 interface PrayerCardProps {
   prayer: {
@@ -88,8 +88,7 @@ const PrayerCard: React.FC<PrayerCardProps> = ({ prayer, currentUser, handleDele
               className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 
                        text-yellow-400"
             >
-              <FontAwesomeIcon 
-                icon={faPrayingHands} 
+              <FaPersonPraying 
                 className="w-4 h-4 fill-current group-hover:scale-110 
                          transition-transform duration-300" 
               />
