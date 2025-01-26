@@ -94,7 +94,7 @@ const Navbar = () => {
 
       {/* Mobile Fullscreen Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 h-screen bg-black bg-opacity-75 flex flex-col items-center justify-center space-y-8 text-white text-2xl font-semibold z-50">
+        <div className="fixed inset-0 h-screen bg-gradient-to-tr from-indigo-900 via-purple-900 to-blue-900 bg-opacity-85 flex flex-col items-center justify-center space-y-8 text-white text-2xl font-semibold z-50">
           <button
             onClick={toggleMobileMenu}
             className="absolute top-6 right-4 text-2xl"
@@ -107,7 +107,7 @@ const Navbar = () => {
               key={path}
               href={path}
               className={`${
-                isActive(path) ? 'text-blue-400' : 'hover:text-gray-200'
+                isActive(path) ? 'text-purple-600' : 'text-stone-50'
               } transition duration-300`}
               onClick={toggleMobileMenu}
             >
