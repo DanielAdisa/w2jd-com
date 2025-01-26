@@ -1,83 +1,157 @@
 'use client';
 
-import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import Footer from '@/app/components/Footer';
-import ruthImage from '@/public/Assets/ruth.jpg';
+import { useEffect, useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight, Brain, Heart, Lightbulb } from 'lucide-react';
 
 const MissionPage = () => {
+  const [stats, setStats] = useState({ 
+    totalImagesGenerated: 0, 
+    totalSubscribers: 0, 
+    totalVotes: 0 
+  });
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await fetch('/api/stats');
+        const data = await response.json();
+        setStats(data);
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    };
+    fetchStats();
+  }, []);
+
   return (
-    <div className="relative min-h-screen flex flex-col overflow-hidden bg-gradient-to-br from-indigo-900 via-teal-900 to-slate-900">
-      {/* Hero Section */}
-      <div className="relative w-full h-screen overflow-hidden">
-        <Image
-          src={ruthImage}
-          alt="Mission Hero Image"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent z-10"></div>
-        <div className="relative z-20 flex flex-col items-center justify-center h-full text-center text-white p-6">
-          <h1 className="text-5xl md:text-6xl font-bold mb-4">Our Mission</h1>
-          <p className="text-lg md:text-xl max-w-3xl mb-8">
-            Join us in our journey to spread love, hope, and faith through our community and outreach programs.
-          </p>
-          <Link href="/contact">
-            <span className="mt-8 bg-gradient-to-r from-teal-600 to-blue-600 text-white py-3 px-6 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-              Get Involved
-            </span>
-          </Link>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 text-white">
+      {/* Hero Section with Romans 12:2 */}
+      <section className="relative min-h-screen flex items-center justify-center px-4">
+        <div className="absolute inset-0 overflow-hidden">
+          <Image 
+            src="/Assets/transformation.jpg" 
+            alt="Transformation" 
+            layout="fill" 
+            objectFit="cover" 
+            className="opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/60 via-purple-900/60 to-slate-900/90" />
         </div>
-      </div>
-span
-      {/* Content Section */}
-      <div className="max-w-7xl mx-auto px-6 py-16 space-y-12">
-        <motion.div
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-sm"
+          className="relative z-10 text-center max-w-4xl mx-auto space-y-8"
         >
-          <h2 className="text-3xl font-serif mb-4 text-slate-900 dark:text-white">Our Mission</h2>
-          <p className="text-lg text-slate-700 dark:text-slate-300">
-            Our mission is to create a welcoming environment where everyone can experience the love of Christ. We believe in the power of community and strive to make a positive impact in the lives of those around us.
+          <span className="text-purple-300 text-xl font-medium">Romans 12:2</span>
+          <h1 className="text-4xl md:text-6xl font-bold leading-tight">
+            "Do not conform to the pattern of this world, but be
+            <span className="text-purple-400"> transformed </span>
+            by the renewing of your mind."
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
+            We are on a mission to facilitate spiritual transformation through digital ministry.
           </p>
         </motion.div>
+      </section>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-sm"
-        >
-          <h2 className="text-3xl font-serif mb-4 text-slate-900 dark:text-white">Our Vision</h2>
-          <p className="text-lg text-slate-700 dark:text-slate-300">
-            Our vision is to see lives transformed by the love of Christ. We aim to be a beacon of hope and a source of support for individuals and families in our community.
-          </p>
-        </motion.div>
+      {/* Transformation Focus */}
+      <section className="py-24 px-4 relative overflow-hidden">
+        <div className="max-w-7xl mx-auto">
+          <motion.div 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+          >
+            {[
+              {
+                icon: <Brain className="w-12 h-12" />,
+                title: "Mind Renewal",
+                description: "Transform your thinking through biblical truth and wisdom"
+              },
+              {
+                icon: <Heart className="w-12 h-12" />,
+                title: "Heart Change",
+                description: "Experience deep spiritual transformation from within"
+              },
+              {
+                icon: <Lightbulb className="w-12 h-12" />,
+                title: "Life Impact",
+                description: "Live out your renewed purpose in Christ"
+              }
+            ].map((item, index) => (
+              <motion.div
+                key={item.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.2 }}
+                className="bg-white/5 backdrop-blur-lg rounded-2xl p-8 
+                         border border-purple-500/20 hover:border-purple-500/40 
+                         transition-all duration-300"
+              >
+                <div className="text-purple-400 mb-6">{item.icon}</div>
+                <h3 className="text-2xl font-bold mb-4">{item.title}</h3>
+                <p className="text-gray-300 leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
 
-        <motion.div
+      {/* Impact Stats */}
+      <section className="py-24 px-4 bg-gradient-to-br from-purple-900/30 to-transparent">
+        <div className="max-w-7xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-16">Our Impact</h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              { number: stats.totalImagesGenerated, label: 'Lives Impacted' },
+              { number: stats.totalSubscribers, label: 'Community Members' },
+              { number: stats.totalVotes, label: 'Prayers Shared' }
+            ].map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ delay: index * 0.1 }}
+                className="p-8 bg-white/5 rounded-2xl border border-purple-500/20"
+              >
+                <div className="text-5xl font-bold text-purple-400 mb-2">
+                  {stat.number}
+                </div>
+                <div className="text-gray-300">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-4">
+        <motion.div 
           initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6 }}
-          className="bg-white dark:bg-slate-800 p-8 rounded-3xl shadow-2xl backdrop-blur-sm"
+          whileInView={{ opacity: 1, y: 0 }}
+          className="max-w-4xl mx-auto text-center space-y-8"
         >
-          <h2 className="text-3xl font-serif mb-4 text-slate-900 dark:text-white">Get Involved</h2>
-          <p className="text-lg text-slate-700 dark:text-slate-300">
-            We welcome you to join us in our mission. Whether through volunteering, donating, or participating in our events, your involvement makes a difference.
+          <h2 className="text-4xl font-bold">Begin Your Transformation</h2>
+          <p className="text-xl text-gray-300">
+            Join our community and experience the renewing power of Christ
           </p>
           <Link href="/contact">
-            <span className="mt-4 inline-block bg-gradient-to-r from-teal-600 to-blue-600 text-white py-2 px-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
-              Contact Us
-            </span>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-purple-600 hover:bg-purple-700 text-white 
+                       px-8 py-4 mt-5 rounded-full text-lg font-semibold 
+                       inline-flex items-center gap-2 transition-all duration-300"
+            >
+              Start Your Journey
+              <ArrowRight className="w-5 h-5" />
+            </motion.button>
           </Link>
         </motion.div>
-      </div>
-
-      {/* Footer */}
-      {/* <Footer /> */}
+      </section>
     </div>
   );
 };

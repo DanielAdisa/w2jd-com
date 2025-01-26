@@ -1,31 +1,84 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
-generator client {
-  provider = "prisma-client-js"
-  output = "./generated/client"
-}
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model Testimony {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   author    String
   title     String
   content   String
-  category  String   @default("General")
+  category  String     @default("General")
+  createdAt DateTime   @default(now())
+  likes     Int        @default(0)
+  comments  Comment[]
+}
+
+model Comment {
+  id          String     @id @default(uuid())
+  testimonyId String
+  testimony   Testimony   @relation(fields: [testimonyId], references: [id])
+  content     String
+  author      String
+  createdAt   DateTime    @default(now())
+
+  @@index([testimonyId])
+}
+
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
   createdAt DateTime @default(now())
-  likes     Int      @default(0)
 }
 
 model Vote {
-  id        String   @id @default(cuid())
-  isGood    Boolean
+  id        Int      @id @default(autoincrement())
+  vote      Boolean
+  ipAddress String
   createdAt DateTime @default(now())
+}
+
+model ImageGeneration {
+  id        Int      @id @default(autoincrement())
+  moodId    String
+  moodName  String
+  count     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ContactMessages {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  message   String
+  createdAt DateTime @default(now())
+}
+
+model Prayer {
+  id        Int      @id @default(autoincrement())
+  title     String
+  content   String
+  category  String?  // Ensure this field exists
+  author    String
+  isPublic  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  comments  PrayerComment[]
+  praying   Int      @default(0)
+}
+
+model PrayerComment {
+  id        Int      @id @default(autoincrement())
+  content   String
+  author    String
+  prayerId  Int
+  prayer    Prayer   @relation(fields: [prayerId], references: [id])
+  createdAt DateTime @default(now())
+  audioUrl  String? 
+  
+  @@index([prayerId])
 }

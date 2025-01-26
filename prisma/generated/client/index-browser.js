@@ -127,9 +127,18 @@ exports.Prisma.TestimonyScalarFieldEnum = {
   likes: 'likes'
 };
 
-exports.Prisma.VoteScalarFieldEnum = {
+exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
-  isGood: 'isGood'
+  content: 'content',
+  author: 'author',
+  testimonyId: 'testimonyId',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.SubscriberScalarFieldEnum = {
+  id: 'id',
+  email: 'email',
+  createdAt: 'createdAt'
 };
 
 exports.Prisma.SortOrder = {
@@ -145,7 +154,8 @@ exports.Prisma.QueryMode = {
 
 exports.Prisma.ModelName = {
   Testimony: 'Testimony',
-  Vote: 'Vote'
+  Comment: 'Comment',
+  Subscriber: 'Subscriber'
 };
 
 /**

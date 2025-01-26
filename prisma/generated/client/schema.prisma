@@ -15,17 +15,34 @@ datasource db {
 }
 
 model Testimony {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   author    String
-  title     String
+  title     String   @unique
   content   String
   category  String   @default("General")
   createdAt DateTime @default(now())
   likes     Int      @default(0)
+
+  // Relation to comments
+  comments Comment[]
 }
 
-model Vote {
-  id Int @id @default(autoincrement())
+model Comment {
+  id String @id @default(cuid())
 
-  isGood Boolean
+  content String
+
+  author String
+
+  testimonyId String
+
+  createdAt DateTime @default(now())
+
+  testimony Testimony @relation(fields: [testimonyId], references: [id])
+}
+
+model Subscriber {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  createdAt DateTime @default(now())
 }

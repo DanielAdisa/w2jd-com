@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
+import Swal from 'sweetalert2';
 import { moods } from '@/data/moods';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -11,33 +12,89 @@ const MoodOfTheDay = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [currentMood, setCurrentMood] = useState(moods[0]);
   const [isGenerating, setIsGenerating] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const generateImage = async () => {
     if (!contentRef.current) return;
-
+    setIsLoading(true);
     try {
-      setIsGenerating(true);
       const content = contentRef.current;
-
-      // Calculate the position and dimensions
-      const rect = content.getBoundingClientRect();
-
-      // Apply specific styles
-      content.style.position = "relative";
-      content.style.zIndex = "9999";
-      content.style.overflow = "visible";
-      content.style.borderRadius = "20px";
-
-      // Generate and download image
-      const dataUrl = await toPng(content);
-      const link = document.createElement('a');
-      link.download = `mood-of-the-day-${currentMood.title}.png`;
+      const dataUrl = await toPng(content, {
+        quality: 10,
+        pixelRatio: 10
+      });
+      const link = document.createElement("a");
+      link.download = `${currentMood.title}-reflection.png`;
       link.href = dataUrl;
       link.click();
+  
+      // Update generation count
+      const response = await fetch('/api/mood/updateGenerationCount', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ moodId: currentMood.id, moodName: currentMood.title }),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        Swal.fire({
+          icon: 'success',
+          title: 'Image Downloaded Successfully!',
+          text: `The image has been downloaded. This mood has been downloaded ${result.count} times.`,
+          background: 'linear-gradient(145deg, #1e293b, #0f172a)',
+          color: '#e2e8f0',
+          confirmButtonColor: '#8b5cf6',
+          confirmButtonText: 'Great!',
+          showClass: {
+            popup: 'animate__animated animate__fadeIn',
+            backdrop: 'animate__animated animate__fadeIn'
+          },
+          hideClass: {
+            popup: 'animate__animated animate__fadeOut',
+            backdrop: 'animate__animated animate__fadeOut'
+          },
+          customClass: {
+            popup: 'rounded-3xl shadow-2xl border border-green-500/20',
+            title: 'font-bold text-3xl mb-4 text-green-400',
+            htmlContainer: 'text-gray-300 text-lg',
+            confirmButton: 'px-8 py-4 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 transition-all duration-300 font-medium tracking-wide'
+          },
+          buttonsStyling: false,
+          padding: '2.5rem',
+          iconColor: '#10b981'
+        });
+      } else {
+        throw new Error(result.error);
+      }
     } catch (error) {
-      console.error('Error generating image:', error);
+      console.error(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Failed to download the image. Please try again later.',
+        background: 'linear-gradient(145deg, #1e293b, #0f172a)',
+        color: '#e2e8f0',
+        confirmButtonColor: '#8b5cf6',
+        confirmButtonText: 'Try Again',
+        showClass: {
+          popup: 'animate__animated animate__fadeIn'
+        },
+        hideClass: {
+          popup: 'animate__animated animate__fadeOut'
+        },
+        customClass: {
+          popup: 'rounded-2xl shadow-2xl border border-purple-500/20',
+          title: 'font-bold text-2xl mb-4',
+          htmlContainer: 'text-gray-300',
+          confirmButton: 'px-6 py-3 rounded-xl bg-gradient-to-r from-purple-500 to-indigo-600 hover:from-purple-600 hover:to-indigo-700 transition-all duration-300 font-medium tracking-wide'
+        },
+        buttonsStyling: false,
+        padding: '2rem'
+      });
     } finally {
-      setIsGenerating(false);
+      setIsLoading(false);
     }
   };
 
@@ -103,3 +160,4 @@ const MoodOfTheDay = () => {
 };
 
 export default MoodOfTheDay;
+

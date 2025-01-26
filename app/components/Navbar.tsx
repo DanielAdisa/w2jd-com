@@ -35,7 +35,7 @@ const Navbar = () => {
     { path: '/testimonies', label: 'Testimony' },
     { path: '/mission', label: 'Our Mission' },
     { path: '/contact', label: 'Contact Us' },
-    { path: '/mood-of-the-day', label: 'Mood Of The Day' },
+    { path: '/prayers', label: 'Prayer Requests' },
   ];
 
   // Updated isActive function for parent route highlighting

@@ -18,10 +18,10 @@ const HeroSection: React.FC = () => {
         className="relative z-20 text-center"
       >
         <h1 className="md:text-5xl text-3xl font-bold mb-4">Is God good to you?</h1>
-        <p className="text-xl mb-4">Share your experience and find inspiration from others.</p>
+        <p className="text-xl mb-4">Have a burden you want to share?</p>
         <div className="w-full max-w-2xl mx-auto">
-          <Link href="/testimonies">
-            <Button className="px-6 py-3  rounded-lg hover:bg-blue-600 transition">Share Your Story</Button>
+          <Link href="/prayers">
+            <Button className="px-6 py-3  rounded-lg hover:bg-blue-600 transition">Share your prayer requests.</Button>
           </Link>
           <div className="bg-white/10 backdrop-blur-lg md:scale-100 scale-90 rounded-lg mt-2 p-4 shadow-lg">
             <SearchBar moods={moods} />

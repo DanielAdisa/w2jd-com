@@ -2,14 +2,17 @@
 
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Globe, Lock } from 'lucide-react';
 
 interface TestimonyFormData {
   author: string;
   title: string;
   content: string;
   category: string;
+  isPublic: boolean;
 }
+
 
 const categories = [
   'Praise',
@@ -17,16 +20,21 @@ const categories = [
   'Salvation',
   'Provision',
   'Protection',
-  'Other'
+  'Other',
 ];
 
-export default function TestimonyForm({ onSubmit }: { onSubmit: (data: TestimonyFormData) => Promise<void> }) {
+export default function TestimonyForm({
+  onSubmit,onClose
+}: {
+  onSubmit: (data: TestimonyFormData) => Promise<void>;
+  onClose: () => void;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const { register, handleSubmit, reset, watch, formState: { errors } } = useForm<TestimonyFormData>();
 
   const content = watch('content', '');
-  const maxLength = 1000;
+  const maxLength = 1500;
 
   const handleFormSubmit = async (data: TestimonyFormData) => {
     try {
@@ -47,16 +55,16 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="space-y-6 bg-white/10 backdrop-blur-sm  rounded-xl p-8 shadow-xl"
+      className="space-y-6 bg-gradient-to-br from-slate-900/70 to-blue-900/70 backdrop-blur-lg rounded-xl p-8 shadow-xl border border-white/10"
     >
       <div>
         <label className="block text-sm font-medium text-white mb-2">Your Name</label>
         <input
           {...register('author', {
             required: 'Name is required',
-            minLength: { value: 2, message: 'Name must be at least 2 characters' }
+            minLength: { value: 2, message: 'Name must be at least 2 characters' },
           })}
-          className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-black/60 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+          className="w-full px-4 py-3 rounded-lg bg-white/10 text-white placeholder-white/60 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           placeholder="Your Name"
         />
         {errors.author && (
@@ -74,11 +82,13 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
         <label className="block text-sm font-medium text-white mb-2">Category</label>
         <select
           {...register('category', { required: 'Please select a category' })}
-          className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-black/60 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+          className="w-full px-4 py-3 rounded-lg bg-white/10 text-white border border-white/20 focus:ring-2 focus:ring-blue-500 focus:outline-none"
         >
           <option value="">Select a category</option>
-          {categories.map(category => (
-            <option key={category} value={category}>{category}</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
           ))}
         </select>
         {errors.category && (
@@ -97,10 +107,10 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
         <input
           {...register('title', {
             required: 'Title is required',
-            minLength: { value: 3, message: 'Title must be at least 3 characters' }
+            minLength: { value: 3, message: 'Title must be at least 3 characters' },
           })}
-          className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-black/60 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-          placeholder="Title of your testimony"
+          className="w-full px-4 py-3 rounded-lg bg-white/10 text-white placeholder-white/60 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+          placeholder="Testimony Title"
         />
         {errors.title && (
           <motion.p
@@ -119,9 +129,9 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
           {...register('content', {
             required: 'Content is required',
             minLength: { value: 10, message: 'Please write at least 10 characters' },
-            maxLength: { value: maxLength, message: `Maximum ${maxLength} characters` }
+            maxLength: { value: maxLength, message: `Maximum ${maxLength} characters` },
           })}
-          className="w-full px-4 py-3 rounded-lg bg-white/20 text-white placeholder-black/60 focus:ring-2 focus:ring-blue-500 transition-all duration-200"
+          className="w-full px-4 py-3 rounded-lg bg-white/10 text-white placeholder-white/60 border border-white/20 focus:ring-2 focus:ring-blue-500 focus:outline-none"
           placeholder="Share your testimony..."
           rows={6}
         />
@@ -141,6 +151,18 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
         </div>
       </div>
 
+      <div className="flex items-center space-x-4">
+        <input
+          {...register('isPublic')}
+          type="checkbox"
+          className="w-4 h-4 rounded text-blue-500 focus:ring-blue-500 bg-white/10 border-white/20"
+        />
+        <label className="text-sm text-white flex items-center gap-2">
+          {watch('isPublic') ? <Globe size={16} /> : <Lock size={16} />}
+          Make this testimony public
+        </label>
+      </div>
+
       <motion.button
         type="submit"
         disabled={isSubmitting}
@@ -156,9 +178,25 @@ export default function TestimonyForm({ onSubmit }: { onSubmit: (data: Testimony
       >
         {isSubmitting ? (
           <span className="flex items-center justify-center">
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            <svg
+              className="animate-spin -ml-1 mr-3 h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              ></circle>
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
             </svg>
             Submitting...
           </span>
