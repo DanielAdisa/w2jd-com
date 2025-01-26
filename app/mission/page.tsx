@@ -10,7 +10,9 @@ const MissionPage = () => {
   const [stats, setStats] = useState({ 
     totalImagesGenerated: 0, 
     totalSubscribers: 0, 
-    totalVotes: 0 
+    totalVotes: 0 ,
+    totalPrayers: 0,
+    totalComments: 0,
   });
 
   useEffect(() => {
@@ -106,9 +108,10 @@ const MissionPage = () => {
           <h2 className="text-3xl md:text-4xl font-bold mb-16">Our Impact</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
-              { number: stats.totalImagesGenerated, label: 'Lives Impacted' },
+              { number: stats.totalImagesGenerated, label: 'Lives Reached' },
               { number: stats.totalSubscribers, label: 'Community Members' },
-              { number: stats.totalVotes, label: 'Prayers Shared' }
+              { number: stats.totalPrayers, label: 'On Going Prayers' },
+              { number: stats.totalComments, label: 'Live Comments' }
             ].map((stat, index) => (
               <motion.div
                 key={stat.label}
