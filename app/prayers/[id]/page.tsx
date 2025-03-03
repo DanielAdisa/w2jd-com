@@ -3,7 +3,7 @@
 import React, { useRef } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import Swal from 'sweetalert2';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPrayingHands, faTrash } from '@fortawesome/free-solid-svg-icons';
@@ -291,88 +291,147 @@ const PrayerRequestDetail = () => {
 
   const currentUser = localStorage.getItem('commentAuthor');
 
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900">
-      {/* Sacred Geometry Background Pattern */}
-      <div className="absolute inset-0 bg-repeat opacity-5" 
-           style={{ backgroundImage: "url('/sacred-geometry.png')" }} />
-
-      <div className="relative">
-        {/* Hero Section with Prayer Request */}
-        <div className="container mx-auto max-w-4xl px-4 pt-24 pb-12">
-        <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  whileHover={{ y: -2 }}
-  className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-lg 
-             rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transition-all duration-300 
-             border border-white/5 hover:border-white/20"
->
-  <div className="flex justify-between items-start p-6 md:p-8">
-    {prayerRequest?.category && (
-      <motion.span 
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium
-                   border border-blue-400/20"
-      >
-        {prayerRequest.category}
-      </motion.span>
-    )}
-    <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  onClick={handleShare}
-                  className="p-2 hover:bg-white/10 flex items-center justify-center bg-yellow-500/25 rounded-full transition-colors"
-                >
-                  <Share2 className="w-5 h-5 text-yellow-400" />
-                </motion.button>
-  </div>
-
-  <div className="px-6 md:px-8 pb-8 space-y-6">
-    <h1 className="text-2xl md:text-4xl lg:text-5xl font-bold text-white leading-tight
-                   bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
-      {prayerRequest?.title}
-    </h1>
-    
-    <p className="text-base md:text-lg text-gray-300 leading-relaxed">
-      {prayerRequest?.content}
-    </p>
-    
-    <div className="flex flex-col md:flex-row justify-between items-start md:items-center 
-                    gap-4 pt-6 border-t border-white/10">
-      <div className="flex items-center gap-4">
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 
-                       flex items-center justify-center border border-white/10">
-          <span className="text-lg text-blue-400 font-medium">
-            {prayerRequest?.author?.charAt(0)?.toUpperCase()}
-          </span>
-        </div>
-        <div className="space-y-1">
-          <p className="text-gray-200 font-medium">{prayerRequest?.author}</p>
-          <p className="text-sm text-gray-400 flex items-center gap-2">
-            <Clock size={12} />
-            {new Date(prayerRequest?.createdAt || '').toLocaleDateString()}
-          </p>
-        </div>
+    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-blue-900 relative overflow-hidden">
+      {/* Animated background particles */}
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        {[...Array(50)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute bg-white/5 rounded-full"
+            style={{
+              width: Math.random() * 10 + 5 + 'px',
+              height: Math.random() * 10 + 5 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+            }}
+            animate={{
+              y: [0, -100],
+              opacity: [0.2, 0],
+              scale: [1, 0.5],
+            }}
+            transition={{
+              duration: Math.random() * 5 + 5,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+        ))}
       </div>
 
-      <motion.div 
-        whileHover={{ scale: 1.05 }}
-        className="flex items-center gap-2 px-5 w-full py-2 bg-gradient-to-r from-yellow-400/10 
-                   to-amber-400/5 rounded-full border border-yellow-400/20"
-      >
-        <FaPersonPraying 
-          className="w-5 h-5 text-yellow-400 group-hover:scale-110 
-                     transition-transform duration-300" 
-        />
-        <span className="text-yellow-400 font-medium">
-          {prayerRequest?.praying} Praying
-        </span>
-      </motion.div>
-    </div>
-  </div>
-</motion.div>
+      <div className="relative z-10">
+        {/* Share Modal */}
+        <AnimatePresence>
+          {showShareModal && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4"
+            >
+              <motion.div
+                initial={{ y: 20 }}
+                animate={{ y: 0 }}
+                className="bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl p-6 max-w-md w-full border border-white/10 shadow-2xl"
+              >
+                <h3 className="text-lg font-semibold text-white mb-4">Share Prayer Request</h3>
+                <div className="flex gap-2 mb-4">
+                  <input
+                    value={window.location.href}
+                    readOnly
+                    aria-label="Share URL"
+                    placeholder="Share URL"
+                    title="Share URL"
+                    className="flex-1 bg-white/5 text-gray-300 px-4 py-2 rounded-lg border border-white/10 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                  <button
+                    onClick={() => {
+                      navigator.clipboard.writeText(window.location.href);
+                      setShowShareModal(false);
+                      Swal.fire({
+                        icon: 'success',
+                        title: 'Link Copied!',
+                        timer: 2000,
+                        background: '#1f2937',
+                        color: '#fff',
+                      });
+                    }}
+                    className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors duration-200"
+                  >
+                    Copy
+                  </button>
+                </div>
+              </motion.div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* Prayer Request Card */}
+        <div className="container mx-auto max-w-4xl px-4 pt-24 pb-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="group relative bg-gradient-to-br from-white/10 to-white/5 backdrop-blur-xl rounded-2xl shadow-2xl border border-white/10 hover:border-white/20 transition-all duration-300"
+          >
+            <div className="flex justify-between items-start p-6 md:p-8">
+              {prayerRequest?.category && (
+                <motion.span 
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  className="px-4 py-2 bg-blue-500/20 text-blue-400 rounded-full text-sm font-medium border border-blue-400/20 shadow-lg"
+                >
+                  {prayerRequest.category}
+                </motion.span>
+              )}
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={handleShare}
+                className="p-2 hover:bg-white/10 flex items-center justify-center bg-yellow-500/25 rounded-full transition-colors shadow-md"
+              >
+                <Share2 className="w-5 h-5 text-yellow-400" />
+              </motion.button>
+            </div>
+
+            <div className="px-6 md:px-8 pb-8 space-y-6">
+              <h1 className="text-3xl md:text-4xl font-bold text-white leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-white/80">
+                {prayerRequest?.title}
+              </h1>
+              
+              <p className="text-lg text-gray-300 leading-relaxed whitespace-pre-wrap">
+                {prayerRequest?.content}
+              </p>
+              
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 pt-6 border-t border-white/10">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center border border-white/10 shadow-md">
+                    <span className="text-lg text-blue-400 font-medium">
+                      {prayerRequest?.author?.charAt(0)?.toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-gray-200 font-medium">{prayerRequest?.author}</p>
+                    <p className="text-sm text-gray-400 flex items-center gap-2">
+                      <Clock size={14} />
+                      {new Date(prayerRequest?.createdAt || '').toLocaleDateString()}
+                    </p>
+                  </div>
+                </div>
+
+                <motion.div 
+                  whileHover={{ scale: 1.05 }}
+                  className="flex items-center gap-2 px-5 py-2 bg-gradient-to-r from-yellow-400/10 to-amber-400/5 rounded-full border border-yellow-400/20 shadow-md"
+                >
+                  <FaPersonPraying className="w-5 h-5 text-yellow-400" />
+                  <span className="text-yellow-400 font-medium">
+                    {prayerRequest?.praying} Praying
+                  </span>
+                </motion.div>
+              </div>
+            </div>
+          </motion.div>
         </div>
 
         {/* Comments Section */}
@@ -383,14 +442,13 @@ const PrayerRequestDetail = () => {
             </h2>
           </div>
 
-          {/* Comments List */}
           <div className="space-y-4 mb-5">
             {comments.map((comment) => (
               <motion.div
                 key={comment.id}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 group"
+                className="bg-white/10 backdrop-blur-sm rounded-xl p-6 group shadow-lg hover:shadow-xl transition-shadow"
               >
                 <div className="flex justify-between items-start">
                   <div className="flex-1">
@@ -408,7 +466,7 @@ const PrayerRequestDetail = () => {
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
                       onClick={() => handleDeleteComment(comment.id)}
-                      className="p-2 text-red-500 "
+                      className="p-2 text-red-500 hover:text-red-400 transition-colors"
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </motion.button>
@@ -418,50 +476,44 @@ const PrayerRequestDetail = () => {
             ))}
           </div>
 
-          {/* Add Comment Form */}
+          {/* Comment Form */}
           <motion.div 
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mb-8"
+            className="bg-white/5 backdrop-blur-sm rounded-xl p-6 mb-8 shadow-xl"
           >
             <input
               type="text"
               value={commentAuthor}
               onChange={(e) => setCommentAuthor(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 mb-4
-                       border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
+              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 mb-4 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               placeholder="Your name..."
             />
             <textarea
               rows={4}
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
-              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 mb-4
-                       border border-white/10 focus:border-blue-500 focus:ring-2 focus:ring-blue-500"
-              placeholder="Add a comment..."
+              className="w-full p-3 rounded-lg bg-white/10 text-white placeholder-gray-400 mb-4 border border-white/10 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              placeholder="Add a prayerful comment..."
             />
             <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               onClick={handleAddComment}
-              className="w-full md:w-auto px-6 py-3 bg-blue-600 hover:bg-blue-700 
-                       text-white rounded-lg transition-colors duration-200"
+              className="w-full px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors shadow-md"
             >
               Submit Comment
             </motion.button>
           </motion.div>
-
-          
         </div>
 
         {/* Floating Action Buttons */}
-        <div className="fixed bottom-8 right-8 flex flex-col gap-4">
+        <div className="fixed bottom-8 right-8 flex flex-col gap-4 z-20">
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => window.history.back()}
-            className="group relative bg-white/10 backdrop-blur-md hover:bg-white/20 
-                     text-white p-4 rounded-full shadow-lg transition-all duration-300"
+            onClick={() => router.back()}
+            className="bg-white/10 backdrop-blur-md text-white p-4 rounded-full shadow-xl hover:bg-white/20 transition-all"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -472,23 +524,20 @@ const PrayerRequestDetail = () => {
             whileHover={!isPraying ? { scale: 1.05 } : {}}
             whileTap={!isPraying ? { scale: 0.95 } : {}}
             onClick={handlePray}
-            className={`group relative ${
-              isPraying ? 'bg-gray-500/50' : 'bg-green-600/90 hover:bg-green-700'
-            } backdrop-blur-md text-white p-4 rounded-full shadow-lg transition-all duration-300`}
+            className={`p-4 rounded-full shadow-xl transition-all ${
+              isPraying 
+                ? 'bg-gray-500/50 cursor-not-allowed' 
+                : 'bg-green-600/90 hover:bg-green-700'
+            }`}
             disabled={isPraying || isLoading}
           >
-            <FaPersonPraying 
-              className={`w-6 h-6 ${isPraying ? 'text-gray-300' : 'text-white'}`} 
-            />
-            <span className="absolute right-full mr-4 bg-black/80 text-white px-4 py-2 rounded-lg 
-                         opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
-              {prayerRequest?.praying} {isPraying ? 'Praying' : 'Pray'}
-            </span>
+            <FaPersonPraying className={`w-6 h-6 ${isPraying ? 'text-gray-300' : 'text-white'}`} />
           </motion.button>
         </div>
       </div>
     </div>
   );
 };
+
 
 export default PrayerRequestDetail;

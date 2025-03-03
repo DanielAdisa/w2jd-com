@@ -2,9 +2,10 @@
 
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useState } from "react";
-import { motion } from "framer-motion";
-import { FaEnvelope, FaInstagram, FaTwitter } from "react-icons/fa6";
-import { FaPray } from "react-icons/fa";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaEnvelope, FaInstagram, FaTwitter, FaGithub } from "react-icons/fa6";
+import { FaPersonPraying } from 'react-icons/fa6';
+
 import Swal from 'sweetalert2';
 import Link from "next/link";
 
@@ -26,14 +27,14 @@ const ContactPage = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
-  
+
       if (res.ok) {
         reset();
         Swal.fire({
           icon: 'success',
           title: 'Message Sent',
           text: 'Thank you for reaching out! We will get back to you soon.',
-          background: '#1f2937',
+          background: '#0f172a',
           color: '#fff',
           confirmButtonColor: '#6366f1'
         });
@@ -46,7 +47,7 @@ const ContactPage = () => {
         icon: 'error',
         title: 'Error',
         text: 'Failed to send message. Please try again.',
-        background: '#1f2937',
+        background: '#0f172a',
         color: '#fff',
         confirmButtonColor: '#6366f1'
       });
@@ -56,47 +57,75 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900">
-      {/* Header Section */}
-      <div className="relative pt-20 text-center text-white">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-4xl mx-auto px-4"
-        >
-          <h1 className="text-4xl md:text-6xl font-bold mb-4">Let's Connect</h1>
-          <p className="text-xl text-gray-300 mb-2">Philippians 4:6</p>
-          <p className="text-lg text-gray-300 italic">
-            "Do not be anxious about anything, but in every situation, by prayer and petition, 
-            with thanksgiving, present your requests to God."
-          </p>
-        </motion.div>
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+      {/* Floating Background Elements */}
+      <div className="fixed inset-0 opacity-5 pointer-events-none">
+        {[...Array(30)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute bg-white/5 rounded-full"
+            style={{
+              width: Math.random() * 15 + 5 + 'px',
+              height: Math.random() * 15 + 5 + 'px',
+              top: Math.random() * 100 + '%',
+              left: Math.random() * 100 + '%',
+            }}
+            animate={{
+              y: [0, -100],
+              opacity: [0.1, 0],
+              scale: [1, 0.5],
+            }}
+            transition={{
+              duration: Math.random() * 8 + 5,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          />
+        ))}
       </div>
 
       {/* Main Content */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 gap-12">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Section */}
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="pt-16 sm:pt-20 lg:pt-24 text-center"
+        >
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-4">
+            Let's Connect
+          </h1>
+          <p className="text-lg sm:text-xl text-slate-300 mb-2">Philippians 4:6</p>
+          <blockquote className="text-base sm:text-lg text-slate-400 italic max-w-3xl mx-auto">
+            "Do not be anxious about anything, but in every situation, by prayer and petition, 
+            with thanksgiving, present your requests to God."
+          </blockquote>
+        </motion.header>
+
+        {/* Content Grid */}
+        <div className="grid lg:grid-cols-2 gap-8 py-12 sm:py-16 lg:py-20">
           {/* Contact Form */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
-            className="bg-white/10 backdrop-blur-lg p-4 rounded-3xl shadow-xl"
+            className="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-slate-700/50 shadow-2xl"
           >
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-              <div className="space-y-2">
+            <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+              <div className="space-y-4">
                 <div>
                   <input
                     {...register("name", { required: "Name is required" })}
-                    className="w-full bg-white/5 border border-purple-500/20 rounded-lg px-4 py-3 
-                             text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 
-                             focus:border-transparent transition-all duration-300"
-                    type="text"
+                    className="w-full bg-slate-700/20 border border-slate-600/30 rounded-xl px-5 py-3.5
+                             text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-purple-500 
+                             focus:border-transparent transition-all duration-200"
                     placeholder="Your Name"
+                    aria-label="Your Name"
                   />
                   {errors.name && (
-                    <p className="text-red-400 text-sm mt-1">{errors.name.message}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.name.message}</p>
                   )}
                 </div>
+
                 <div>
                   <input
                     {...register("email", {
@@ -106,27 +135,29 @@ const ContactPage = () => {
                         message: "Invalid email address",
                       },
                     })}
-                    className="w-full bg-white/5 border border-purple-500/20 rounded-lg px-4 py-3 
-                             text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 
-                             focus:border-transparent transition-all duration-300"
-                    type="email"
+                    className="w-full bg-slate-700/20 border border-slate-600/30 rounded-xl px-5 py-3.5
+                             text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-purple-500 
+                             focus:border-transparent transition-all duration-200"
                     placeholder="Your Email"
+                    aria-label="Your Email"
                   />
                   {errors.email && (
-                    <p className="text-red-400 text-sm mt-1">{errors.email.message}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.email.message}</p>
                   )}
                 </div>
+
                 <div>
                   <textarea
                     {...register("message", { required: "Message is required" })}
-                    className="w-full bg-white/5 border border-purple-500/20 rounded-lg px-4 py-3 
-                             text-white placeholder-gray-400 focus:ring-2 focus:ring-purple-500 
-                             focus:border-transparent transition-all duration-300"
+                    className="w-full bg-slate-700/20 border border-slate-600/30 rounded-xl px-5 py-3.5
+                             text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-purple-500 
+                             focus:border-transparent transition-all duration-200"
                     placeholder="Your Message"
-                    rows={6}
+                    rows={5}
+                    aria-label="Your Message"
                   />
                   {errors.message && (
-                    <p className="text-red-400 text-sm mt-1">{errors.message.message}</p>
+                    <p className="text-red-400 text-sm mt-1.5">{errors.message.message}</p>
                   )}
                 </div>
               </div>
@@ -135,11 +166,10 @@ const ContactPage = () => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className={`w-full py-4 rounded-lg text-white font-semibold
-                         bg-gradient-to-r from-purple-600 to-blue-600 
-                         hover:from-purple-500 hover:to-blue-500 
-                         transition-all duration-300 ${loading ? "opacity-50" : ""}`}
                 disabled={loading}
+                className={`w-full py-4 rounded-xl text-white font-semibold
+                         bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 
+                         transition-all duration-200 ${loading ? "opacity-70 cursor-not-allowed" : ""}`}
               >
                 {loading ? (
                   <span className="flex items-center justify-center gap-2">
@@ -158,95 +188,96 @@ const ContactPage = () => {
 
           {/* Contact Info */}
           <motion.div
-  initial={{ opacity: 0, x: 20 }}
-  animate={{ opacity: 1, x: 0 }}
-  className="space-y-12 text-white p-6 bg-white/5 backdrop-blur-lg rounded-3xl border border-purple-500/20"
->
-  {/* Main Contact Section */}
-  <div>
-    <h3 className="text-3xl font-bold mb-4 mt-10 bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-      Connect With Us
-    </h3>
-    <p className="text-gray-300 leading-relaxed text-lg">
-      Join our community of believers. Together, we can grow in faith and make an impact for Christ.
-    </p>
-  </div>
-
-  {/* Email Contact */}
-  <div className="space-y-6">
-    <motion.div
-      whileHover={{ scale: 1.02 }}
-      className="group"
-    >
-      <Link 
-        href="mailto:misfits.for4.christ@gmail.com"
-        className="flex items-center gap-4 p-4 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-300"
-      >
-        <div className="p-3 bg-purple-500/20 rounded-full group-hover:bg-purple-500/30 transition-colors">
-          <FaEnvelope className="w-6 h-6 text-purple-400" />
-        </div>
-        <div>
-          <h4 className="font-semibold text-purple-300">Email Us</h4>
-          <span className="text-gray-400">misfits.for4.christ@gmail.com</span>
-        </div>
-      </Link>
-    </motion.div>
-  </div>
-
-  {/* Social Links */}
-  <div>
-    <h3 className="text-2xl font-bold mb-6 text-purple-300">Connect on Social Media</h3>
-    <div className="grid grid-cols-2 gap-4">
-      {[
-        {
-          icon: <FaTwitter className="w-6 h-6" />,
-          label: 'Twitter',
-          description: 'Follow us for daily inspiration',
-          href: 'https://x.com/Misfits_4Christ',
-          color: 'hover:bg-blue-500/20'
-        },
-        {
-          icon: <FaInstagram className="w-6 h-6" />,
-          label: 'Instagram',
-          description: 'Join our visual journey',
-          href: 'https://www.instagram.com/misfits_for_christ',
-          color: 'hover:bg-pink-500/20'
-        }
-      ].map((social) => (
-        <motion.div
-          key={social.label}
-          whileHover={{ scale: 1.02 }}
-          className="group"
-        >
-          <Link 
-            href={social.href}
-            className={`flex flex-col items-center p-6 rounded-xl bg-white/5 ${social.color} transition-all duration-300`}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="space-y-8 sm:space-y-10 text-slate-100"
           >
-            <div className="p-4 rounded-full bg-white/10 group-hover:bg-white/20 transition-colors">
-              {social.icon}
+            {/* Social Links Section Redesign */}
+            <div className="space-y-6">
+              <h3 className="text-xl font-bold text-purple-300">Connect With Us</h3>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  {
+                    icon: <FaTwitter className="w-6 h-6 text-blue-400 group-hover:text-blue-300 transition-colors" />,
+                    label: 'Twitter',
+                    href: 'https://x.com/Misfits_4Christ',
+                    gradient: 'from-blue-500 to-blue-600'
+                  },
+                  {
+                    icon: <FaInstagram className="w-6 h-6 text-pink-400 group-hover:text-pink-300 transition-colors" />,
+                    label: 'Instagram',
+                    href: 'https://www.instagram.com/misfits_for_christ',
+                    gradient: 'from-pink-500 to-purple-600'
+                  }
+                ].map((social) => (
+                  <div key={social.label} className="relative group">
+                    <div className={`absolute -inset-0.5 bg-gradient-to-r ${social.gradient} rounded-xl filter blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200`} />
+                    <motion.div
+                      whileHover={{ scale: 1.02 }}
+                      className="relative flex items-center gap-4 p-4 sm:p-5 rounded-xl bg-slate-800/20 backdrop-blur-sm border border-slate-700/50 hover:border-slate-700/70 transition-all duration-200"
+                    >
+                      <Link
+                        href={social.href}
+                        className="flex items-center gap-4 w-full"
+                      >
+                        <motion.div
+                          whileHover={{ scale: 1.1 }}
+                          className="p-2 rounded-full bg-gradient-to-br from-slate-700/50 to-slate-800/50"
+                        >
+                          {social.icon}
+                        </motion.div>
+                        <span className="font-medium text-slate-200 group-hover:text-slate-100 transition-colors">
+                          {social.label}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  </div>
+                ))}
+              </div>
             </div>
-            <h4 className="mt-4 font-semibold">{social.label}</h4>
-            <p className="text-sm text-gray-400 text-center mt-2">{social.description}</p>
-          </Link>
-        </motion.div>
-      ))}
-    </div>
-  </div>
 
-  {/* Prayer Request Button */}
-  <motion.div
-    whileHover={{ scale: 1.02 }}
-    className="mt-8"
-  >
-    <Link 
-      href="/prayers"
-      className="flex items-center justify-center gap-3 w-full p-4 rounded-xl bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-500 hover:to-pink-500 transition-all duration-300"
-    >
-      <FaPray className="w-6 h-6" />
-      <span className="font-semibold">Submit Prayer Request</span>
-    </Link>
-  </motion.div>
-</motion.div>
+            {/* Email Section Redesign */}
+            <motion.div whileHover={{ scale: 1.02 }} className="group">
+              <Link
+                href="mailto:misfits.for4.christ@gmail.com"
+                className="flex items-center gap-4 p-6 rounded-2xl bg-slate-800/20 backdrop-blur-sm border border-slate-700/50 hover:border-purple-500/30 transition-all duration-300"
+              >
+                <motion.div 
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="p-3 rounded-xl bg-gradient-to-br from-purple-500/20 to-blue-500/20"
+                >
+                  <FaEnvelope className="w-8 h-8 text-purple-400" />
+                </motion.div>
+                <div>
+                  <h3 className="text-lg font-semibold text-purple-300">Email Us</h3>
+                  <p className="text-slate-400 text-sm mt-1">misfits.for4.christ@gmail.com</p>
+                </div>
+              </Link>
+            </motion.div>
+
+            {/* Prayer Request CTA Redesign */}
+            <motion.div 
+              whileHover={{ scale: 1.02 }}
+              className="relative group mt-8"
+            >
+              <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl blur opacity-30 group-hover:opacity-50 transition duration-1000 group-hover:duration-200" />
+              <Link
+                href="/prayers"
+                className="relative flex items-center justify-center gap-3 w-full p-5 rounded-2xl
+                       bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-500 hover:to-blue-500
+                       transition-all duration-200 shadow-lg"
+              >
+                <motion.div
+                  animate={{ y: [-2, 2, -2] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                >
+                  <FaPersonPraying className="w-6 h-6 text-white" />
+                </motion.div>
+                <span className="font-semibold text-white">Submit Prayer Request</span>
+              </Link>
+            </motion.div>
+          </motion.div>
         </div>
       </div>
     </div>
